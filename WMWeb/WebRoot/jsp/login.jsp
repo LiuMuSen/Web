@@ -17,6 +17,8 @@
 			<form action="" method="post" id="login_form">
 				<input type="text"　name="user_name" id="user_name" placeholder="请输入手机号码"/><br/>
 				<input type="password" name="password" id="password" placeholder="请输入密码"/><br>
+				<input name="chknumber" type="text" id="chknumber" placeholder="请输入验证码" />
+					<img src="../images/checkcode.png" id="safecode" onclick="changecode()"/><br/>
 				<input type="submit" id="btn_submit" value="立即登录"/>
 			</form>
 		</div>
