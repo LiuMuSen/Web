@@ -198,3 +198,43 @@ body{
 	border: 1px solid #9aafe5;
 	padding: 5px;
 }
+
+#footer{
+	width:100%;
+	margin-top:20px;
+	background:white;
+}
+
+#footer-wrap{
+	width:980px;
+	height:200px;
+	margin:0 auto;
+}
+
+.column{
+	float:left;
+	margin-left:10px;
+	margin-right:100px;
+}
+
+.column ul li{
+	list-style:none;
+	height:30px;
+	line-height:30px;
+	margin-top:10px;
+	color:gray;
+	cursor: pointer;
+}
+
+.column ul li:hover{
+	color:RGB(255,198,67);
+}
+
+.detail{
+	margin-top:10px;
+}
+
+.detail p{
+	margin-bottom:10px;
+}
+
