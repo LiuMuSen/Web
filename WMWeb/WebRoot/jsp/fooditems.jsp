@@ -1,11 +1,10 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" href="../css/home.css"/>
-<title>美味速递</title>
+<link rel="stylesheet" href="../css/fooditems.css"/>
+<title>某某店</title>
 </head>
 <body>
 	<div id="header" >
@@ -25,28 +24,29 @@
 	</div>
 	
 	<div id="content">
-		<div id="rest-banner">
-			<span>商家分类</span>
-			<ul>
-				<li class="selected"><a href="#"><span>全部</span></a></li>
-				<li><a href="#"><span>美食</span></a></li>
-				<li><a href="#"><span>正餐优选</span></a></li>
-				<li><a href="#"><span>超市</span></a></li>
-				<li><a href="#"><span>精选小吃</span></a></li>
-				<li><a href="#"><span>鲜果购</span></a></li>
-				<li><a href="#"><span>下午茶</span></a></li>
-			</ul>
+		<div id="shop_info">
+			<div id="shop_logon"><img alt="" src="../images/MDL.jpg" width="90px" height="70px"border="0"/></div>
+			<div id="shop_name"><h3>广州麦当劳百利华庭餐厅</h3></div>
+			<div class="money"><p>配送：<h2>￥0</h2></p></div>
+			<div class="money"><p>起送：<h2>￥5</h2></p></div>
 		</div>
 		
-		<div  class="listcontent">
-			<div  class="shoplist">
-				<div class="shop_td">
-					<div class="shop">
-						<p><a href="#"><img src="../images/MDL.jpg" width="230px" height="150px"border="0" /> </a></p>
+		<div style="clear:both;"></div>
+		
+		<div id="food_banner">
+			<ul><li class="slected"><a href=""><span>菜单</span></a></li><li><a href=""><span>评价</span></a></li></ul>
+		</div>
+		
+		<div  class="items_listcontent">
+			<div  class="foodlist">
+				<div class="food_td">
+					<div class="food">
+						<p><a href="#"><img src="../images/food1.jpg" width="200px" height="150px"border="0" /> </a></p>
 					</div>
-					<div class="shop">
-						<a href="#">广州麦当劳百利华庭餐厅</a><br/>
-						<span>起送费：￥0</span><span>配送费：￥9</span>
+					<div class="food">
+						<a href="#">套餐1号</a><br/>
+						<span>价格:￥0</span>
+						<button>+</button>
 					</div>
 				</div>
 				
@@ -61,6 +61,29 @@
 				</ul>
 			</div>
 		</div>
+		
+		<div id="class="access_listcontent"">
+			<div class="access">
+				<ul>
+					<li>好吃好吃好吃好吃好吃</li>
+					<li>好吃好吃好吃好吃好吃</li>
+					<li>好吃好吃好吃好吃好吃</li>
+					<li>好吃好吃好吃好吃好吃</li>
+				</ul>
+			</div>
+			
+			<div style="clear:both;"></div>
+			<div class="pagination">
+				<ul>
+					<li class="disablepage"><a href="#">&lt;&lt;上一页</a></li>
+					<li>第1页/共20页</li>
+					<li class="nextPage"><a href="#">下一页&gt;&gt;</a></li>
+				</ul>
+			</div>
+		</div>
+		
+		
+		
 	</div>
 	
 	<div id="footer">
@@ -94,5 +117,6 @@
 			</div>
 		</div>
 	</div>
+
 </body>
 </html>
