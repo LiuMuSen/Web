@@ -1,0 +1,20 @@
+@CHARSET "UTF-8";
+.eight_tr{
+	background:RGB(200,200,200);
+}
+
+.eight_tr th input{
+	width:100px;
+	height:50px;
+	font-size:20px;
+	border-radius:5px;
+	cursor: pointer;
+}
+
+.eight_tr th input:hover{
+	background: yellow;
+}
+
+.eight_tr th input:active{
+	background: red;
+}

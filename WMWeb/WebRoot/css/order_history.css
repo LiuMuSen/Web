@@ -1,0 +1,108 @@
+@CHARSET "UTF-8";
+#content{
+	width:1300px;
+	margin:0 auto;
+}
+
+.panel-heading{
+	height:40px;
+	border:1px solid black;
+	border-radius:3px;
+	font-size:20px;
+	line-height: 40px;
+}
+
+.order{
+	font-family:"微软雅黑";
+	color:gray;
+	margin-top:20px;
+	border: 1px solid RGB(248,248,248);
+	background:white;
+}
+
+th{
+	height:50px;
+	border:1px solid RGB(200,200,200);
+}
+
+.first_tr{
+	background:RGBA(50,50,50,0.2);
+}
+
+.first_tr th{
+	color:#D2691E;
+}
+
+.second_tr{
+	line-height:40px;
+	background:RGB(255,250,241);
+}
+
+.thress_tr th span{
+	margin-right:30px;
+}
+
+.four_tr{
+	background:RGB(255,250,241);	
+
+}
+
+.four_tr th{
+	color:black;
+}
+.seven_tr{
+	background:RGB(200,200,200);	
+}
+
+.pagination {
+	padding: 5px;
+	width: 600px;
+	margin: 5px;
+	text-align: center;
+	margin:0 auto;
+}
+
+.pagination ul {
+	margin: 5;
+	padding: 5;
+	font-size: 12px;
+}
+
+.pagination li {
+	list-style-type: none;
+	display: inline;
+	padding: 1px;
+	margin: 1px;
+}
+
+.pagination a,.pagination a:visited {
+	padding: 5px;
+	border: 1px solid #9aafe5;
+	text-decoration: none;
+	color: #2e6ab1;
+}
+
+.pagination a:hover,.pagination a:active {
+	border: 1px solid #2b66a5;
+	color: #000;
+	background-color: lightyellow;
+}
+
+.pagination li.currentpage {
+	font-weight: bold;
+	padding: 5px;
+	border: 1px solid navy;
+	background-color: #2e6ab1;
+	color: #FFF;
+}
+
+.pagination li.disablepage {
+	padding: 5px;
+	color: #929292;
+}
+
+.pagination li.nextpage {
+	font-weight: bold;
+	border: 1px solid #9aafe5;
+	padding: 5px;
+}
