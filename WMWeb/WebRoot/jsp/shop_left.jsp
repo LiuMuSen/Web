@@ -37,36 +37,29 @@
 	<div>
 		<ul class="ce">
 			  <li> 
-			       <a href="fooditems.jsp" target="mainFrame">商家首页</a>
+			       <a href="${pageContext.request.contextPath }/shopInfo/findshopItems.do" target="mainFrame">商家首页</a>
 			  </li>
 			  <li> 
 			       <a href="#">订单管理<img class="more" src="../images/more.png"/></a>
 			       <ul class="er">
-						<li><a  href="order_new.jsp" target="mainFrame">今日订单</a></li>
-						<li><a  href="order_back.jsp" target="mainFrame">退单处理</a></li>
-						<li><a  href="order_history.jsp" target="mainFrame">历史订单</a></li>
+						<li><a  href="${pageContext.request.contextPath }/shopInfo/findTodayOrder.do" target="mainFrame">今日订单</a></li>
+						<li><a  href="${pageContext.request.contextPath }/shopInfo/findOutAllOrder.do" target="mainFrame">退单处理</a></li>
+						<li><a  href="${pageContext.request.contextPath }/shopInfo/findAllOrder.do" target="mainFrame">历史订单</a></li>
 				   </ul>
 			  </li>
 			  <li> 
 			       <a href="#">菜品信息<img class="more" src="../images/more.png"/></a>
 			       <ul class="er">
-						<li><a  href="food_all.jsp" target="mainFrame">所有菜品</a></li>
-						<li><a  href="##">增加菜品</a></li>
+						<li><a  href="${pageContext.request.contextPath }/items/findAllItems.do" target="mainFrame">所有菜品</a></li>
+						<li><a  href="food_add.jsp" target="mainFrame">增加菜品</a></li>
 				   </ul>
 			  </li>
 			  <li> 
 			       <a href="#">商家信息<img class="more" src="../images/more.png"/></a>
 			       <ul class="er">
-						<li><a  href="test.jsp" target="mainFrame">查看信息</a></li>
-						<li><a  href="##">修改信息</a></li>
-				   </ul>
-			  </li>
-			  <li> 
-			       <a href="#">数据统计<img class="more" src="../images/more.png"/></a>
-			       <ul class="er">
-						<li><a  href="test.jsp" target="mainFrame">已收资金</a></li>
-						<li><a  href="##">菜式售出数量</a></li>
-						<li><a  href="##">用户性别比例</a></li>
+						<li><a  href="${pageContext.request.contextPath }/shopInfo/findShopInfo.do" target="mainFrame">查看信息</a></li>
+						<li><a  href="${pageContext.request.contextPath }/shopInfo/editShopInfo.do" target="mainFrame">修改信息</a></li>
+						<li><a  href="shopInfo_changePWD.jsp" target="mainFrame">修改密码</a></li>
 				   </ul>
 			  </li>
 		</ul>

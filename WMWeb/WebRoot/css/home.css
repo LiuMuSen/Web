@@ -1,3 +1,4 @@
+/* by:oy */
 body{
 	background:RGB(245,245,245);
 }
@@ -123,10 +124,13 @@ body{
 }
 
 .shop_td{
-	width:230px;
+	width:300px;
 	height:250px;
-	margin-top:20px;
-	margin-left:10px;
+	
+	/* E_by:oy */
+	/* margin-top:20px;
+	margin-left:10px; */
+	margin: 20px 10px;
 	float:left;
 }
 
@@ -143,7 +147,11 @@ body{
 .shop span{
 	display:block;
 	float:left;
-	font-size:15px;
+	
+	/* ---------E_by:oy ----------*/
+	/* font-size:15px; */
+	font-size: 13px;
+	
 	margin:10px 26px 0 0;
 }
 
@@ -238,4 +246,3 @@ body{
 .detail p{
 	margin-bottom:10px;
 }
-

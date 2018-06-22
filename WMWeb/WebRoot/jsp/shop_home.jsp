@@ -3,9 +3,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>商家</title>
 </head>
-	<frameset rows="100,*" frameborder=0 border="0" framespacing="0">
+	<frameset rows="100,*" frameborder="0" border="0" framespacing="0">
 		  <frame src="${pageContext.request.contextPath}/jsp/shop_top.jsp" name="topFrame" scrolling="NO" style="border-bottom:1px solid RGB(119,119,119)" noresize >
 		  <frameset cols="300,*" frameborder="0" border="0" framespacing="0">
 				<frame src="${pageContext.request.contextPath}/jsp/shop_left.jsp" name="leftFrame" noresize scrolling="YES">

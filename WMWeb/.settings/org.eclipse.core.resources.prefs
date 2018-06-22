@@ -1,6 +1,16 @@
 eclipse.preferences.version=1
+encoding//WebRoot/jsp/food_add.jsp=UTF-8
+encoding//WebRoot/jsp/food_edit.jsp=UTF-8
 encoding//WebRoot/jsp/fooditems.jsp=UTF-8
 encoding//WebRoot/jsp/home.jsp=UTF-8
+encoding//WebRoot/jsp/operator/operator_changePWD.jsp=UTF-8
+encoding//WebRoot/jsp/operator/operator_shopInfo.jsp=UTF-8
+encoding//WebRoot/jsp/operator/operator_userAdd.jsp=UTF-8
+encoding//WebRoot/jsp/operator/operator_userList.jsp=UTF-8
+encoding//WebRoot/jsp/operator/operator_userView.jsp=UTF-8
+encoding//WebRoot/jsp/shopInfo_changePWD.jsp=UTF-8
+encoding//WebRoot/jsp/shopInfo_view.jsp=UTF-8
 encoding//WebRoot/jsp/shop_left.jsp=UTF-8
 encoding//WebRoot/jsp/shop_top.jsp=UTF-8
 encoding//WebRoot/jsp/shop_welcome.jsp=UTF-8
+encoding//WebRoot/jsp/test1.jsp=UTF-8

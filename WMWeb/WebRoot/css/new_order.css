@@ -49,10 +49,16 @@
 	left:3px;
 }
 
+.createTime{
+	position: absolute; top:26px; right:3px;
+}
+
 .userAdd a{
 	text-decoration: none;
 	color:gray;
 }
+
+
 
 .foodInfo{
 	width:600px;
@@ -91,6 +97,10 @@
 .btn{
 	margin-top:3px;
 	height:30px;
+}
+
+.btn input[type="submit"]:hover{
+	background:red;
 }
 
 .btn a{

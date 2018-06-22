@@ -14,5 +14,6 @@
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
 	<classpathentry kind="src" path="config"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/ValidateCode.jar"/>
 	<classpathentry kind="output" path="WebRoot/classes"/>
 </classpath>

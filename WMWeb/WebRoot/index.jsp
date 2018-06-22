@@ -4,8 +4,13 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>美味速递</title>
+<script>
+	function a(){
+		location.href="${pageContext.request.contextPath }/shop/findAllShop.do";
+	}
+</script>
 </head>
-<body>
+<body onload="a()">
 
 </body>
 </html>

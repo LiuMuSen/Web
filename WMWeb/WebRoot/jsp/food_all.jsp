@@ -1,5 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt"  prefix="fmt"%>
+<c:set var="picPath" value="http://127.0.1:8006/WebImages"></c:set>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -15,19 +17,20 @@
 			<td width="15%">商品图片</td>
 			<td width="5%">商品价格</td>
 			<td width="30%">商品描述</td>
-			<td width="5%">删除</td>
 			<td width="5%">修改</td>
+			<td width="5%">删除</td>
 		</tr>
-		
-		<tr align="center">
-			<td><input type="checkbox" name="id" value="${item.id }"></td>
-			<td>套餐1号</td>
-			<td><img id='imgSize1ImgSrc' src='../images/food1.jpg'  height="100" width="100" /></td>
-			<td>￥10</td>
-			<td>很好吃的套餐</td>
-			<td><input type="button" value="删除"/></td>
-			<td><input type="button" value="修改"/></td>
-		</tr>
+		<c:forEach items="${itemsList }" var="item">
+			<tr align="center">
+				<td><input type="checkbox" name="id" value="${item.itemsId }"></td>
+				<td>${item.itemsName }</td>
+				<td><img id='imgSize1ImgSrc' src='${picPath }${item.itemsImagespic }'  height="100" width="100" /></td>
+				<td>${item.itemsPrice }</td>
+				<td>${item.itemsContent }</td>
+				<td><a href="${pageContext.request.contextPath }/items/edit.do?id=${item.itemsId}">修改</a></td>
+				<td><a href="${pageContext.request.contextPath }/items/deleteByID.do?id=${item.itemsId}">删除</a></td>
+			</tr>
+		</c:forEach>
 		
 	</table>
 </body>

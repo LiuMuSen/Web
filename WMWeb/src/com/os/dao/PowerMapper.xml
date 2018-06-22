@@ -5,6 +5,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="com.os.dao.PowerMapper">
 	<select id="findAllPower"  resultType="com.os.domain.Power">
-		Select * from Power
+		Select * from power
+	</select>
+	
+	
+	<select id="getId"  resultType="java.lang.Integer" parameterType="com.os.domain.UserAPower">
+		Select power_Id from power where power_name =#{powerName}
 	</select>
 </mapper>
