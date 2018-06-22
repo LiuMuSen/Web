@@ -1,0 +1,96 @@
+html, body {height: 100%;width: 100%;}
+
+body{
+	margin:0;
+	padding:0;
+	background-repeat:no-repeat;
+	background-size:100%;
+}
+
+#nav{
+	margin:0 23%;
+	padding:0;
+	width:100%;
+	height:99px;
+	font-size:35px;
+	line-height:99px;
+}
+
+#nav a{
+	color: #d23430 ;
+	text-decoration: none;
+	margin: 0 auto;
+}
+
+.content{
+	width:100%;
+	height:935px;
+}
+
+#logon{
+	margin-top:10%;
+	float:left;
+	margin-left:30%;
+}
+
+#login_div{
+	width:250px;
+	height:450px;
+	padding: 100px 0 0;
+	color:white;
+	margin-left:5%;
+	float:left;
+}
+
+
+input{
+	display: block;
+	width: 100%;
+	padding: .375rem .375rem;
+	font-size: .875rem;
+	line-height: 1.5;
+	color:#495057;
+	background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    margin: 12px 0;
+	
+}
+
+.checkcode input{
+	margin-top:0px;
+	width:50%;
+	float:left;
+}
+
+
+#safecode{
+	margin-top: 3px;
+	margin-left: 5px;
+	height:30px;
+	float:left;
+} 
+
+#btn_submit{
+	color: #fff;
+    background-color: #d23430;
+    border-color: #d23430;
+	width:261px;
+	cursor: pointer;
+}
+
+#btn_submit:active{
+	background: red	;
+}
+
+.text{
+	width:100%;
+}
+.text a{
+	width:200px;
+	display:block;
+	margin:0 40%;	
+	color: #555!important;
+	text-decoration: none;
+}

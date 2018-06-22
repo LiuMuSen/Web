@@ -1,0 +1,302 @@
+@charset "UTF-8";
+body{
+	background:RGB(245,245,245);
+}
+*{
+	margin:0px;
+	padding:0px;
+}
+
+#header{
+	width:100%;
+	margin-bottom:20px;
+}
+
+#nav_top{
+	width:100%;
+	height:32px;
+	background:RGB(51,51,51);
+	color:white;
+}
+
+#nav_top div a{
+	color:white;
+	text-decoration: none;
+}
+
+#topnav-wrap{
+	width:980px;
+	margin:0 auto;
+	line-height:32px;
+}
+
+#current-address{
+	float:left;
+}
+
+#nav_login{
+	float:right;
+}
+
+#nav_middle{
+	width:100%;
+	height:80px;
+	background:white;
+}
+
+#middlenav-wrap{
+	width:980px;
+	margin:0 auto;
+}
+
+#middlenav-wrap div{
+	margin-top:25px;
+	float:left;
+}
+
+#desire{
+	margin-left:300px;
+}
+
+#desire a{
+	width:100px;
+	font-size: 25px;
+	margin-left:20px;
+	cursor: pointer;
+}
+
+#search{margin-left:50px;}
+
+#search input{
+	width:250px;
+	height:40px;
+}
+
+#search button{
+	width:50px;
+	height:42px;
+}
+/* header的CSS */
+
+.content{
+	width: 980px;
+    margin: 0 auto;	
+}
+
+.tablehead{
+	height:50px;
+	width: 100%;
+	line-height: 50px;
+}
+
+ul.cartop li{
+	list-style: none;
+	float: left;
+}
+
+li.list_chk{
+	width: 80px;
+	text-indent: 30px;
+}
+
+li.list_info{
+	text-indent:250px;
+	width: 580px;
+}
+li.list_num{
+	width: 100px;
+}
+li.list_sum{
+	width: 100px;
+}
+li.list_op{
+	width: 100px;
+}
+div.carfoot{
+    background-color: #E5E5E5;
+    height: 50px;
+    line-height: 50px;
+    margin: 20px 0px;
+    color: black;
+    padding-left: 20px;
+}
+div.right{
+	float: right;
+}
+span.sum_num{
+	color: #C40000;
+    font-weight: bold;
+    font-size: 16px;
+}
+span.sum_price{
+	color: #C40000;
+    font-weight: bold;
+    font-size: 20px;
+}
+button.createOrder{
+	background-color: #AAAAAA;
+    border: 0px solid #AAAAAA;
+    color: white;
+    width: 120px;
+    height: 50px;
+    font-size: 20px;
+    text-align: center;
+    border-radius: 2px; 
+}
+div.shopinfo{
+	position: relative;
+	width: 100%;
+    height: 38px;
+    background-color: #fff;
+    line-height: 38px;
+    vertical-align: baseline;
+}
+div.all_check{
+	position: relative;
+    float: left;
+    width: 30px;
+    height: 38px;
+}
+div.shop_name{
+	float:left;
+}
+input#shop_a.shopchoice{
+	position: absolute;
+	top: 13px;
+	left: 10px;
+}
+div.order_content{
+	    border: 1px solid #ccc;
+}
+.order_list {
+    width: 100%;
+    height: 130px;
+    background-color:#ffffff;
+    border-bottom: 1px solid #e7e7e7;
+}
+ul.order_list{
+	list-style: none;
+}
+.order_list li{
+	float: left;
+    height: 100%;
+}
+div.shop_name a{
+	
+}
+
+.order_lists {
+    width: 100%;
+    height: 130px;
+    border-bottom: 1px solid #e7e7e7;
+}
+ul.order_list li.list_check{
+    position: relative;
+    width: 80px;
+}
+input#checkbox_2.son_check{
+	position: absolute;
+    z-index: 0;
+    left: 35px;
+    top: 60px;
+}
+div.list_img img{
+	float:left;
+	width: 140px;
+	height:100px;
+	margin-top:20px;
+}
+div.list_text{
+	float:left;
+	line-height: 18px;
+	width:200px;
+	margin:20px 0 0 10px;
+}
+div.list_text a{
+	color: #3c3c3c;
+	margin-left: 20px;
+}
+div.list_text a:link{
+	text-decoration: none;
+}
+ul.order_list li.list_info{
+	text-indent:0px;
+}
+ul.order_list li.list_num{
+	width:100px;
+}
+input.num{
+	width:39px;
+	height:15px;
+	line-height:15px;
+	border:1px solid #aaa;
+	color:#343434;
+	text-align:center;
+	padding:4px 0;
+	background-color:#fff;
+	z-index: 2;
+	left:10px;
+}
+ul.order_list li.list_price{
+	width: 100px;
+}
+p.price{
+	line-height: 18px;
+	margin-top: 20px;
+	color:#ff0000;
+	font-weight: bold;
+	font-family: Verdana,Tahoma,arial;
+}
+p.del{
+	margin-top: 20px;
+	line-height: 18px;
+}
+p.del a{
+	text-decoration: none;
+	color: #000;
+}
+
+
+
+
+
+
+/* foot的css */
+#footer{
+	width:100%;
+	margin-top:20px;
+	background:white;
+}
+
+#footer-wrap{
+	width:980px;
+	height:200px;
+	margin:0 auto;
+}
+
+.column{
+	float:left;
+	margin-left:10px;
+	margin-right:100px;
+}
+
+.column ul li{
+	list-style:none;
+	height:30px;
+	line-height:30px;
+	margin-top:10px;
+	color:gray;
+	cursor: pointer;
+}
+
+.column ul li:hover{
+	color:RGB(255,198,67);
+}
+
+.detail{
+	margin-top:10px;
+}
+
+.detail p{
+	margin-bottom:10px;
+}

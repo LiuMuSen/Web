@@ -1,0 +1,65 @@
+@CHARSET "UTF-8";
+form{
+	width:980px;
+	height:700px;
+	margin:0 auto;
+	font-size:20px;
+}
+
+#editInfo{
+	width:100%;
+	font-size:25px;
+	line-height: 50px;
+	color:red;
+	border:1px solid black;
+	background:RGBA(200,200,200,0.2);
+}
+
+#Address{
+	margin-bottom:20px;
+	height:50px;
+	width:800px;
+	font-size:25px;
+	border:1px solid blue;
+	border-radius:15px
+}
+
+#shopBegincost{
+	margin-bottom:20px;
+	height:50px;
+	width:200px;
+	font-size:25px;
+	border:1px solid blue;
+	border-radius:15px
+}
+
+#shopTransfercost{
+	margin-bottom:20px;
+	height:50px;
+	width:200px;
+	font-size:25px;
+	border:1px solid blue;
+	border-radius:15px
+}
+
+textarea[name="shopDescription"]{
+	margin-bottom:20px;
+	margin-top:20px;
+	font-size:20px;
+	border:1px solid blue;
+	border-radius:5px;
+	font-weight: bolder;
+}
+
+input[type="submit"]{
+	margin-top:10px;
+	width:100px;
+	height:50px;
+	background: white;
+	border:1px solid blue;
+	border-radius:5px;
+}
+
+input[type="submit"]:hover{
+	background:yellow;
+}

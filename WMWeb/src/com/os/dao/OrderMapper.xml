@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.os.dao.OrderMapper" >
+  <resultMap id="BaseResultMap" type="com.os.domain.Order" >
+    <id column="order_Id" property="orderId" jdbcType="INTEGER" />
+    <result column="user_Id" property="userId" jdbcType="INTEGER" />
+    <result column="shop_Id" property="shopId" jdbcType="INTEGER" />
+    <result column="address_Id" property="addressId" jdbcType="INTEGER" />
+    <result column="order_totalPrice" property="orderTotalprice" jdbcType="DOUBLE" />
+    <result column="order_assess" property="orderAssess" jdbcType="VARCHAR" />
+    <result column="order_status" property="orderStatus" jdbcType="INTEGER" />
+    <result column="order_createTime" property="orderCreatetime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    order_Id, user_Id, shop_Id, address_Id, order_totalPrice, order_assess, order_status, 
+    order_createTime
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.os.domain.OrderExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from order
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from order
+    where order_Id = #{orderId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from order
+    where order_Id = #{orderId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.os.domain.OrderExample" >
+    delete from order
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.os.domain.Order" >
+    insert into order (order_Id, user_Id, shop_Id, 
+      address_Id, order_totalPrice, order_assess, 
+      order_status, order_createTime)
+    values (#{orderId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{shopId,jdbcType=INTEGER}, 
+      #{addressId,jdbcType=INTEGER}, #{orderTotalprice,jdbcType=DOUBLE}, #{orderAssess,jdbcType=VARCHAR}, 
+      #{orderStatus,jdbcType=INTEGER}, #{orderCreatetime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.os.domain.Order" >
+    insert into order
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="orderId != null" >
+        order_Id,
+      </if>
+      <if test="userId != null" >
+        user_Id,
+      </if>
+      <if test="shopId != null" >
+        shop_Id,
+      </if>
+      <if test="addressId != null" >
+        address_Id,
+      </if>
+      <if test="orderTotalprice != null" >
+        order_totalPrice,
+      </if>
+      <if test="orderAssess != null" >
+        order_assess,
+      </if>
+      <if test="orderStatus != null" >
+        order_status,
+      </if>
+      <if test="orderCreatetime != null" >
+        order_createTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="orderId != null" >
+        #{orderId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="shopId != null" >
+        #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="addressId != null" >
+        #{addressId,jdbcType=INTEGER},
+      </if>
+      <if test="orderTotalprice != null" >
+        #{orderTotalprice,jdbcType=DOUBLE},
+      </if>
+      <if test="orderAssess != null" >
+        #{orderAssess,jdbcType=VARCHAR},
+      </if>
+      <if test="orderStatus != null" >
+        #{orderStatus,jdbcType=INTEGER},
+      </if>
+      <if test="orderCreatetime != null" >
+        #{orderCreatetime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.os.domain.OrderExample" resultType="java.lang.Integer" >
+    select count(*) from order
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update order
+    <set >
+      <if test="record.orderId != null" >
+        order_Id = #{record.orderId,jdbcType=INTEGER},
+      </if>
+      <if test="record.userId != null" >
+        user_Id = #{record.userId,jdbcType=INTEGER},
+      </if>
+      <if test="record.shopId != null" >
+        shop_Id = #{record.shopId,jdbcType=INTEGER},
+      </if>
+      <if test="record.addressId != null" >
+        address_Id = #{record.addressId,jdbcType=INTEGER},
+      </if>
+      <if test="record.orderTotalprice != null" >
+        order_totalPrice = #{record.orderTotalprice,jdbcType=DOUBLE},
+      </if>
+      <if test="record.orderAssess != null" >
+        order_assess = #{record.orderAssess,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orderStatus != null" >
+        order_status = #{record.orderStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.orderCreatetime != null" >
+        order_createTime = #{record.orderCreatetime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update order
+    set order_Id = #{record.orderId,jdbcType=INTEGER},
+      user_Id = #{record.userId,jdbcType=INTEGER},
+      shop_Id = #{record.shopId,jdbcType=INTEGER},
+      address_Id = #{record.addressId,jdbcType=INTEGER},
+      order_totalPrice = #{record.orderTotalprice,jdbcType=DOUBLE},
+      order_assess = #{record.orderAssess,jdbcType=VARCHAR},
+      order_status = #{record.orderStatus,jdbcType=INTEGER},
+      order_createTime = #{record.orderCreatetime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.os.domain.Order" >
+    update order
+    <set >
+      <if test="userId != null" >
+        user_Id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="shopId != null" >
+        shop_Id = #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="addressId != null" >
+        address_Id = #{addressId,jdbcType=INTEGER},
+      </if>
+      <if test="orderTotalprice != null" >
+        order_totalPrice = #{orderTotalprice,jdbcType=DOUBLE},
+      </if>
+      <if test="orderAssess != null" >
+        order_assess = #{orderAssess,jdbcType=VARCHAR},
+      </if>
+      <if test="orderStatus != null" >
+        order_status = #{orderStatus,jdbcType=INTEGER},
+      </if>
+      <if test="orderCreatetime != null" >
+        order_createTime = #{orderCreatetime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where order_Id = #{orderId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.os.domain.Order" >
+    update order
+    set user_Id = #{userId,jdbcType=INTEGER},
+      shop_Id = #{shopId,jdbcType=INTEGER},
+      address_Id = #{addressId,jdbcType=INTEGER},
+      order_totalPrice = #{orderTotalprice,jdbcType=DOUBLE},
+      order_assess = #{orderAssess,jdbcType=VARCHAR},
+      order_status = #{orderStatus,jdbcType=INTEGER},
+      order_createTime = #{orderCreatetime,jdbcType=TIMESTAMP}
+    where order_Id = #{orderId,jdbcType=INTEGER}
+  </update>
+  
+  <!-- 状态5表示退单以处理 -->
+  <update id="upadteOrderSta" parameterType="com.os.domain.Order" >
+    update `order`
+    set order_status=5
+    where order_Id = #{id,jdbcType=INTEGER}
+  </update>
+  
+    <!-- 状态2表示接单处理 -->
+  <update id="updateStatus" parameterType="com.os.domain.Order" >
+    update `order`
+    set order_status=2
+    where order_Id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <!-- 获取最大订单号by:oy -->
+  <select id="getMaxOrderId" resultType="int">
+  	select MAX(order_Id) FROM `order`
+  </select>
+  <!-- 插入（新增）订单by:oy -->
+  <insert id="insertOrder" parameterType="com.os.domain.Order">
+  	insert into `order`(user_Id, shop_Id, address_Id, order_totalPrice, order_status, order_createTime)
+  	values( #{userId,jdbcType=INTEGER}, #{shopId,jdbcType=INTEGER}, #{addressId,jdbcType=INTEGER}, #{orderTotalprice,jdbcType=DOUBLE}, #{orderStatus,jdbcType=INTEGER}, (select current_timestamp()))
+  </insert>
+  <!-- 根据用户id找该用户所有id （换方法了）by:oy -->
+  <select id="findAllOrderByUserId" parameterType="int" resultMap="BaseResultMap">
+  	SELECT * FROM `order` WHERE user_Id = #{userId,jdbcType=INTEGER};
+  </select>
+  
+</mapper>

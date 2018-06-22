@@ -1,0 +1,26 @@
+@CHARSET "UTF-8";
+
+#itemsForm{
+	font-size:20px;
+}
+
+tr{
+	height:100px;
+}
+
+input{
+	font-size:20px;
+}
+
+input[type="text"]{
+	width:400px;
+	height:50px;
+	border:1px solid blue;
+	border-radius:15px
+}
+
+#items_content{
+	font-size:20px;
+	border:1px solid blue;
+	border-radius:15px
+}

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.os.dao.ShopATypeMapper">
+	<resultMap type="com.os.domain.ShopAType" id="ShopATypeRstMap">
+		<!-- 商家信息 -->
+		<id column="shop_Id" property="shopId"></id>
+		<result column="shop_name" property="shopName"/>
+		<result column="shop_description" property="shopDescription"/>
+		<result column="shop_address" property="shopAddress"/>
+		<result column="shop_activity" property="shopActivity"/>
+		<result column="shop_logon" property="shopLogon"/>
+		<result column="type_Id" property="typeId"/>
+		<result column="user_Id"  property="userId"/>
+		<result column="shop_transferCost" property="shopTransfercost"/>
+		<result column="shop_beginCost" property="shopBegincost"/>
+		<association property="type" javaType="com.os.domain.Type">
+			<id column="type_Id" property="typeId"></id>
+			<result column="type_name" property="typeName"/>
+		</association>
+	</resultMap>
+		
+	<select id="findShopInfo" resultMap="ShopATypeRstMap" parameterType="java.lang.Integer">
+		select shop_Id,
+			shop_name,
+			shop_description,
+			shop_address,
+			shop_activity,
+			shop_logon,
+			shop.type_Id,
+			user_Id,
+			shop_transferCost,
+			shop_beginCost,
+			type_name from shop,type where shop.type_Id=type.type_Id and user_Id=#{userId}
+	</select>	
+		
+</mapper>

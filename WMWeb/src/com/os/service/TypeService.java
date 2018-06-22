@@ -1,0 +1,8 @@
+package com.os.service;
+
+public interface TypeService {
+
+	//¸ù¾ÝName²éÕÒID
+	Integer findIdByName(String typeName);
+	
+}

@@ -1,0 +1,477 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.os.dao.ApplyMapper" >
+  <resultMap id="BaseResultMap" type="com.os.domain.Apply" >
+    <id column="apply_Id" property="applyId" jdbcType="INTEGER" />
+    <result column="apply_realName" property="applyRealname" jdbcType="VARCHAR" />
+    <result column="type_Id" property="typeId" jdbcType="INTEGER" />
+    <result column="apply_phone" property="applyPhone" jdbcType="VARCHAR" />
+    <result column="apply_shopName" property="applyShopname" jdbcType="VARCHAR" />
+    <result column="apply_shopAddress" property="applyShopaddress" jdbcType="VARCHAR" />
+    <result column="apply_shopdescription" property="applyShopdescription" jdbcType="VARCHAR" />
+    <result column="apply_IDcard" property="applyIdcard" jdbcType="VARCHAR" />
+    <result column="IDCardphotopic" property="idcardphotopic" jdbcType="VARCHAR" />
+    <result column="businesspic" property="businesspic" jdbcType="VARCHAR" />
+    <result column="sanitaryPic" property="sanitarypic" jdbcType="VARCHAR" />
+    <result column="user_Id" property="userId" jdbcType="INTEGER" />
+    <result column="apply_status" property="applyStatus" jdbcType="INTEGER" />
+    <result column="shop_Id" property="shopId" jdbcType="INTEGER" />
+    <result column="apply_shopLogon" property="applyShoplogon" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    apply_Id, apply_realName, type_Id, apply_phone, apply_shopName, apply_shopAddress, 
+    apply_shopdescription, apply_IDcard, IDCardphotopic, businesspic, sanitaryPic, user_Id, 
+    apply_status, shop_Id, apply_shopLogon
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.os.domain.ApplyExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from apply
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from apply
+    where apply_Id = #{applyId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from apply
+    where apply_Id = #{applyId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.os.domain.ApplyExample" >
+    delete from apply
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.os.domain.Apply" >
+    insert into apply (apply_Id, apply_realName, type_Id, 
+      apply_phone, apply_shopName, apply_shopAddress, 
+      apply_shopdescription, apply_IDcard, IDCardphotopic, 
+      businesspic, sanitaryPic, user_Id, 
+      apply_status, shop_Id, apply_shopLogon
+      )
+    values (#{applyId,jdbcType=INTEGER}, #{applyRealname,jdbcType=VARCHAR}, #{typeId,jdbcType=INTEGER}, 
+      #{applyPhone,jdbcType=VARCHAR}, #{applyShopname,jdbcType=VARCHAR}, #{applyShopaddress,jdbcType=VARCHAR}, 
+      #{applyShopdescription,jdbcType=VARCHAR}, #{applyIdcard,jdbcType=VARCHAR}, #{idcardphotopic,jdbcType=VARCHAR}, 
+      #{businesspic,jdbcType=VARCHAR}, #{sanitarypic,jdbcType=VARCHAR}, #{userId,jdbcType=INTEGER}, 
+      #{applyStatus,jdbcType=INTEGER}, #{shopId,jdbcType=INTEGER}, #{applyShoplogon,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.os.domain.Apply" >
+    insert into apply
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="applyId != null" >
+        apply_Id,
+      </if>
+      <if test="applyRealname != null" >
+        apply_realName,
+      </if>
+      <if test="typeId != null" >
+        type_Id,
+      </if>
+      <if test="applyPhone != null" >
+        apply_phone,
+      </if>
+      <if test="applyShopname != null" >
+        apply_shopName,
+      </if>
+      <if test="applyShopaddress != null" >
+        apply_shopAddress,
+      </if>
+      <if test="applyShopdescription != null" >
+        apply_shopdescription,
+      </if>
+      <if test="applyIdcard != null" >
+        apply_IDcard,
+      </if>
+      <if test="idcardphotopic != null" >
+        IDCardphotopic,
+      </if>
+      <if test="businesspic != null" >
+        businesspic,
+      </if>
+      <if test="sanitarypic != null" >
+        sanitaryPic,
+      </if>
+      <if test="userId != null" >
+        user_Id,
+      </if>
+      <if test="applyStatus != null" >
+        apply_status,
+      </if>
+      <if test="shopId != null" >
+        shop_Id,
+      </if>
+      <if test="applyShoplogon != null" >
+        apply_shopLogon,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="applyId != null" >
+        #{applyId,jdbcType=INTEGER},
+      </if>
+      <if test="applyRealname != null" >
+        #{applyRealname,jdbcType=VARCHAR},
+      </if>
+      <if test="typeId != null" >
+        #{typeId,jdbcType=INTEGER},
+      </if>
+      <if test="applyPhone != null" >
+        #{applyPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="applyShopname != null" >
+        #{applyShopname,jdbcType=VARCHAR},
+      </if>
+      <if test="applyShopaddress != null" >
+        #{applyShopaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="applyShopdescription != null" >
+        #{applyShopdescription,jdbcType=VARCHAR},
+      </if>
+      <if test="applyIdcard != null" >
+        #{applyIdcard,jdbcType=VARCHAR},
+      </if>
+      <if test="idcardphotopic != null" >
+        #{idcardphotopic,jdbcType=VARCHAR},
+      </if>
+      <if test="businesspic != null" >
+        #{businesspic,jdbcType=VARCHAR},
+      </if>
+      <if test="sanitarypic != null" >
+        #{sanitarypic,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="applyStatus != null" >
+        #{applyStatus,jdbcType=INTEGER},
+      </if>
+      <if test="shopId != null" >
+        #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="applyShoplogon != null" >
+        #{applyShoplogon,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.os.domain.ApplyExample" resultType="java.lang.Integer" >
+    select count(*) from apply
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update apply
+    <set >
+      <if test="record.applyId != null" >
+        apply_Id = #{record.applyId,jdbcType=INTEGER},
+      </if>
+      <if test="record.applyRealname != null" >
+        apply_realName = #{record.applyRealname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.typeId != null" >
+        type_Id = #{record.typeId,jdbcType=INTEGER},
+      </if>
+      <if test="record.applyPhone != null" >
+        apply_phone = #{record.applyPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.applyShopname != null" >
+        apply_shopName = #{record.applyShopname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.applyShopaddress != null" >
+        apply_shopAddress = #{record.applyShopaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.applyShopdescription != null" >
+        apply_shopdescription = #{record.applyShopdescription,jdbcType=VARCHAR},
+      </if>
+      <if test="record.applyIdcard != null" >
+        apply_IDcard = #{record.applyIdcard,jdbcType=VARCHAR},
+      </if>
+      <if test="record.idcardphotopic != null" >
+        IDCardphotopic = #{record.idcardphotopic,jdbcType=VARCHAR},
+      </if>
+      <if test="record.businesspic != null" >
+        businesspic = #{record.businesspic,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sanitarypic != null" >
+        sanitaryPic = #{record.sanitarypic,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userId != null" >
+        user_Id = #{record.userId,jdbcType=INTEGER},
+      </if>
+      <if test="record.applyStatus != null" >
+        apply_status = #{record.applyStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.shopId != null" >
+        shop_Id = #{record.shopId,jdbcType=INTEGER},
+      </if>
+      <if test="record.applyShoplogon != null" >
+        apply_shopLogon = #{record.applyShoplogon,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update apply
+    set apply_Id = #{record.applyId,jdbcType=INTEGER},
+      apply_realName = #{record.applyRealname,jdbcType=VARCHAR},
+      type_Id = #{record.typeId,jdbcType=INTEGER},
+      apply_phone = #{record.applyPhone,jdbcType=VARCHAR},
+      apply_shopName = #{record.applyShopname,jdbcType=VARCHAR},
+      apply_shopAddress = #{record.applyShopaddress,jdbcType=VARCHAR},
+      apply_shopdescription = #{record.applyShopdescription,jdbcType=VARCHAR},
+      apply_IDcard = #{record.applyIdcard,jdbcType=VARCHAR},
+      IDCardphotopic = #{record.idcardphotopic,jdbcType=VARCHAR},
+      businesspic = #{record.businesspic,jdbcType=VARCHAR},
+      sanitaryPic = #{record.sanitarypic,jdbcType=VARCHAR},
+      user_Id = #{record.userId,jdbcType=INTEGER},
+      apply_status = #{record.applyStatus,jdbcType=INTEGER},
+      shop_Id = #{record.shopId,jdbcType=INTEGER},
+      apply_shopLogon = #{record.applyShoplogon,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.os.domain.Apply" >
+    update apply
+    <set >
+      <if test="applyRealname != null" >
+        apply_realName = #{applyRealname,jdbcType=VARCHAR},
+      </if>
+      <if test="typeId != null" >
+        type_Id = #{typeId,jdbcType=INTEGER},
+      </if>
+      <if test="applyPhone != null" >
+        apply_phone = #{applyPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="applyShopname != null" >
+        apply_shopName = #{applyShopname,jdbcType=VARCHAR},
+      </if>
+      <if test="applyShopaddress != null" >
+        apply_shopAddress = #{applyShopaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="applyShopdescription != null" >
+        apply_shopdescription = #{applyShopdescription,jdbcType=VARCHAR},
+      </if>
+      <if test="applyIdcard != null" >
+        apply_IDcard = #{applyIdcard,jdbcType=VARCHAR},
+      </if>
+      <if test="idcardphotopic != null" >
+        IDCardphotopic = #{idcardphotopic,jdbcType=VARCHAR},
+      </if>
+      <if test="businesspic != null" >
+        businesspic = #{businesspic,jdbcType=VARCHAR},
+      </if>
+      <if test="sanitarypic != null" >
+        sanitaryPic = #{sanitarypic,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        user_Id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="applyStatus != null" >
+        apply_status = #{applyStatus,jdbcType=INTEGER},
+      </if>
+      <if test="shopId != null" >
+        shop_Id = #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="applyShoplogon != null" >
+        apply_shopLogon = #{applyShoplogon,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where apply_Id = #{applyId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.os.domain.Apply" >
+    update apply
+    set apply_realName = #{applyRealname,jdbcType=VARCHAR},
+      type_Id = #{typeId,jdbcType=INTEGER},
+      apply_phone = #{applyPhone,jdbcType=VARCHAR},
+      apply_shopName = #{applyShopname,jdbcType=VARCHAR},
+      apply_shopAddress = #{applyShopaddress,jdbcType=VARCHAR},
+      apply_shopdescription = #{applyShopdescription,jdbcType=VARCHAR},
+      apply_IDcard = #{applyIdcard,jdbcType=VARCHAR},
+      IDCardphotopic = #{idcardphotopic,jdbcType=VARCHAR},
+      businesspic = #{businesspic,jdbcType=VARCHAR},
+      sanitaryPic = #{sanitarypic,jdbcType=VARCHAR},
+      user_Id = #{userId,jdbcType=INTEGER},
+      apply_status = #{applyStatus,jdbcType=INTEGER},
+      shop_Id = #{shopId,jdbcType=INTEGER},
+      apply_shopLogon = #{applyShoplogon,jdbcType=VARCHAR}
+    where apply_Id = #{applyId,jdbcType=INTEGER}
+  </update>
+  
+  <select id="countBystatus" resultType="int">
+  	select count(*) from apply where apply_status=0;
+  </select>
+  
+    <resultMap id="BaseResultMap1" type="com.os.domain.Apply" >
+	    <id column="apply_Id" property="applyId" jdbcType="INTEGER" />
+	    <result column="apply_realName" property="applyRealname" jdbcType="VARCHAR" />
+	    <result column="type_Id" property="typeId" jdbcType="INTEGER" />
+	    <result column="apply_phone" property="applyPhone" jdbcType="VARCHAR" />
+	    <result column="apply_shopName" property="applyShopname" jdbcType="VARCHAR" />
+	    <result column="apply_shopAddress" property="applyShopaddress" jdbcType="VARCHAR" />
+	    <result column="apply_shopdescription" property="applyShopdescription" jdbcType="VARCHAR" />
+	    <result column="apply_IDcard" property="applyIdcard" jdbcType="VARCHAR" />
+	    <result column="IDCardphotopic" property="idcardphotopic" jdbcType="VARCHAR" />
+	    <result column="businesspic" property="businesspic" jdbcType="VARCHAR" />
+	    <result column="sanitaryPic" property="sanitarypic" jdbcType="VARCHAR" />
+	    <result column="user_Id" property="userId" jdbcType="INTEGER" />
+	    <result column="apply_status" property="applyStatus" jdbcType="INTEGER" />
+	    <result column="shop_Id" property="shopId" jdbcType="INTEGER" />
+	    <result column="apply_shopLogon" property="applyShoplogon" jdbcType="VARCHAR" />
+    	<association property="type" javaType="com.os.domain.Type">
+    		 <id column="type_Id" property="typeId" jdbcType="INTEGER" />
+   			 <result column="type_name" property="typeName" jdbcType="VARCHAR" />
+    	</association>
+  	</resultMap>
+  
+   <select id="pageOfApply" resultMap="BaseResultMap1" parameterType="com.os.domain.PageBean">
+  		 select apply_Id,
+  		 	apply_realName,
+  		 	apply.type_Id,
+  		 	apply_phone,
+  		 	apply_shopName,
+  		 	apply_shopAddress,
+  		 	apply_shopdescription,
+  		 	apply_IDcard,
+  		 	IDCardphotopic,
+  		 	`businesspic`,
+  		 	sanitaryPic,
+  		 	user_Id,
+  		 	apply_status,
+  		 	shop_Id,
+  		 	apply_shopLogon,
+  		 	type_name
+  		 	from apply,type where apply.type_Id=type.type_Id and apply_status=0  limit #{beginPage},#{pageSize}
+  </select>
+  
+   <select id="findApplyById" resultMap="BaseResultMap1" parameterType="com.os.domain.Apply">
+  		 select apply_Id,
+  		 	apply_realName,
+  		 	apply.type_Id,
+  		 	apply_phone,
+  		 	apply_shopName,
+  		 	apply_shopAddress,
+  		 	apply_shopdescription,
+  		 	apply_IDcard,
+  		 	IDCardphotopic,
+  		 	`businesspic`,
+  		 	sanitaryPic,
+  		 	user_Id,
+  		 	apply_status,
+  		 	shop_Id,
+  		 	apply_shopLogon,
+  		 	type_name
+  		 	from apply,type where apply.type_Id=type.type_Id and apply_Id=#{applyId}
+  </select>
+  
+   <update id="updatePassInfo" parameterType="com.os.domain.Apply" >
+    update apply
+    set apply_status=1,
+      	shop_Id = #{shopId,jdbcType=INTEGER}
+    where apply_Id= #{applyId,jdbcType=INTEGER}
+  </update>
+  
+ 	
+ <update id="updateFailInfo" parameterType="com.os.domain.Apply" >
+	    update apply
+	    set apply_status =2
+	    where apply_Id = #{applyId,jdbcType=INTEGER}
+  </update>
+ 
+  <select id="countBystatus1" resultType="int">
+  	select count(*) from apply where apply_status=1;
+  </select>
+ 
+ 	  
+   <select id="pageOfApply1" resultMap="BaseResultMap1" parameterType="com.os.domain.PageBean">
+  		 select apply_Id,
+  		 	apply_realName,
+  		 	apply.type_Id,
+  		 	apply_phone,
+  		 	apply_shopName,
+  		 	apply_shopAddress,
+  		 	apply_shopdescription,
+  		 	apply_IDcard,
+  		 	IDCardphotopic,
+  		 	`businesspic`,
+  		 	sanitaryPic,
+  		 	user_Id,
+  		 	apply_status,
+  		 	shop_Id,
+  		 	apply_shopLogon,
+  		 	type_name
+  		 	from apply,type where apply.type_Id=type.type_Id and apply_status=1  limit #{beginPage},#{pageSize}
+  </select>
+ 
+</mapper>

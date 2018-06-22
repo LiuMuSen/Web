@@ -1,0 +1,352 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.os.dao.UserMapper" >
+  <resultMap id="BaseResultMap" type="com.os.domain.User" >
+    <id column="user_Id" property="userId" jdbcType="INTEGER" />
+    <result column="user_name" property="userName" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="user_sex" property="userSex" jdbcType="VARCHAR" />
+    <result column="power_Id" property="powerId" jdbcType="INTEGER" />
+    <result column="user_phone" property="userPhone" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    user_Id, user_name, password, user_sex, power_Id, user_phone
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.os.domain.UserExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from user
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from user
+    where user_Id = #{userId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from user
+    where user_Id = #{userId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.os.domain.UserExample" >
+    delete from user
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.os.domain.User" >
+    insert into user (user_Id, user_name, password, 
+      user_sex, power_Id, user_phone
+      )
+    values (#{userId,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{userSex,jdbcType=VARCHAR}, #{powerId,jdbcType=INTEGER}, #{userPhone,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.os.domain.User" >
+    insert into user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        user_Id,
+      </if>
+      <if test="userName != null" >
+        user_name,
+      </if>
+      <if test="password != null" >
+        password,
+      </if>
+      <if test="userSex != null" >
+        user_sex,
+      </if>
+      <if test="powerId != null" >
+        power_Id,
+      </if>
+      <if test="userPhone != null" >
+        user_phone,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="userSex != null" >
+        #{userSex,jdbcType=VARCHAR},
+      </if>
+      <if test="powerId != null" >
+        #{powerId,jdbcType=INTEGER},
+      </if>
+      <if test="userPhone != null" >
+        #{userPhone,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.os.domain.UserExample" resultType="java.lang.Integer" >
+    select count(*) from user
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update user
+    <set >
+      <if test="record.userId != null" >
+        user_Id = #{record.userId,jdbcType=INTEGER},
+      </if>
+      <if test="record.userName != null" >
+        user_name = #{record.userName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.password != null" >
+        password = #{record.password,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userSex != null" >
+        user_sex = #{record.userSex,jdbcType=VARCHAR},
+      </if>
+      <if test="record.powerId != null" >
+        power_Id = #{record.powerId,jdbcType=INTEGER},
+      </if>
+      <if test="record.userPhone != null" >
+        user_phone = #{record.userPhone,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update user
+    set user_Id = #{record.userId,jdbcType=INTEGER},
+      user_name = #{record.userName,jdbcType=VARCHAR},
+      password = #{record.password,jdbcType=VARCHAR},
+      user_sex = #{record.userSex,jdbcType=VARCHAR},
+      power_Id = #{record.powerId,jdbcType=INTEGER},
+      user_phone = #{record.userPhone,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.os.domain.User" >
+    update user
+    <set >
+      <if test="userName != null" >
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="userSex != null" >
+        user_sex = #{userSex,jdbcType=VARCHAR},
+      </if>
+      <if test="powerId != null" >
+        power_Id = #{powerId,jdbcType=INTEGER},
+      </if>
+      <if test="userPhone != null" >
+        user_phone = #{userPhone,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where user_Id = #{userId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.os.domain.User" >
+    update user
+    set user_name = #{userName,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      user_sex = #{userSex,jdbcType=VARCHAR},
+      power_Id = #{powerId,jdbcType=INTEGER},
+      user_phone = #{userPhone,jdbcType=VARCHAR}
+    where user_Id = #{userId,jdbcType=INTEGER}
+  </update>
+  
+  
+  <select id="selectByUserPhone" resultMap="BaseResultMap" parameterType="String">
+	  	 select * from user
+	    where user_Phone = #{userPhone}
+  </select>
+  
+  <update id="changePWD" parameterType="com.os.domain.User">
+  		 update user
+		    set  password = #{password,jdbcType=VARCHAR}
+		    where user_Id = #{userId,jdbcType=INTEGER}
+  </update>
+  
+  <select id="count" resultType="java.lang.Integer">
+	  	 select count(*) from user
+  </select>
+ 
+ <select id="selectMaxId" resultType="java.lang.Integer">
+ 	 select max(user_Id) from user
+ </select>
+
+  <update id="saveOrUpdate" parameterType="com.os.domain.User" >
+    update user
+    set user_name = #{userName,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      user_sex = #{userSex,jdbcType=VARCHAR},
+      user_phone = #{userPhone,jdbcType=VARCHAR}
+    where user_Id = #{userId,jdbcType=INTEGER}
+  </update>
+ 
+ <update id="updatePower" parameterType="java.lang.Integer" >
+    update `user`
+    set power_Id=2
+    where user_Id = #{userId}
+  </update>
+ 
+ <!-- by:oy  -->
+   <!-- 为查询订单复制的resultMap -->
+  <resultMap id="UserAndOrderRstMap" type="com.os.domain.User" >
+  		<!--用户信息  -->
+	     <id column="user_Id" property="userId" jdbcType="INTEGER" />
+    	<result column="user_name" property="userName" jdbcType="VARCHAR" />
+    	<result column="password" property="password" jdbcType="VARCHAR" />
+    	<result column="user_sex" property="userSex" jdbcType="VARCHAR" />
+    	<result column="power_Id" property="powerId" jdbcType="INTEGER" />
+    	<result column="user_phone" property="userPhone" jdbcType="VARCHAR" />
+	    <!-- 订单信息 -->
+	    <collection property="order" ofType="com.os.domain.Order">
+	    	<id column="order_Id" property="orderId" jdbcType="INTEGER" />
+		    <result column="user_Id" property="userId" jdbcType="INTEGER" />
+		    <result column="shop_Id" property="shopId" jdbcType="INTEGER" />
+		    <result column="address_Id" property="addressId" jdbcType="INTEGER" />
+		    <result column="order_totalPrice" property="orderTotalprice" jdbcType="DOUBLE" />
+		    <result column="order_assess" property="orderAssess" jdbcType="VARCHAR" />
+		    <result column="order_status" property="orderStatus" jdbcType="INTEGER" />
+		    <result column="order_createTime" property="orderCreatetime" jdbcType="TIMESTAMP" />
+		    <association property="address"  javaType="com.os.domain.Address">
+			    <id column="address_Id" property="addressId" jdbcType="INTEGER" />
+				<result column="address_content" property="addressContent" jdbcType="VARCHAR" />
+				<result column="user_Id" property="userId" jdbcType="INTEGER" />
+				<association property="user" javaType="com.os.domain.User">
+					   <result column="user_name" property="userName" jdbcType="VARCHAR" />
+					   <result column="password" property="password" jdbcType="VARCHAR" />
+					   <result column="user_sex" property="userSex" jdbcType="VARCHAR" />
+					   <result column="power_Id" property="powerId" jdbcType="INTEGER" />
+					   <result column="user_phone" property="userPhone" jdbcType="VARCHAR" />
+				</association>
+			</association>
+			 <association property="shop"  javaType="com.os.domain.Shop">
+			     <id column="shop_Id" property="shopId" jdbcType="INTEGER" />
+			    <result column="shop_name" property="shopName" jdbcType="VARCHAR" />
+			    <result column="shop_address" property="shopAddress" jdbcType="VARCHAR" />
+			    <result column="shop_activity" property="shopActivity" jdbcType="VARCHAR" />
+			    <result column="shop_logon" property="shopLogon" jdbcType="VARCHAR" />
+			    <result column="shop_description" property="shopDescription" jdbcType="VARCHAR" />
+			    <result column="user_Id" property="userId" jdbcType="INTEGER" />
+			    <result column="type_Id" property="typeId" jdbcType="INTEGER" />
+			    <result column="shop_transferCost" property="shopTransfercost" jdbcType="DOUBLE" />
+			    <result column="shop_beginCost" property="shopBegincost" jdbcType="DOUBLE" />
+			</association>
+		    <!-- 订单详情 -->
+		    <collection property="detailList" ofType="com.os.domain.Orderdetail">
+		    	 <id column="orderdetail_Id" property="orderdetailId" jdbcType="INTEGER" />
+			     <result column="items_Id" property="itemsId" jdbcType="INTEGER" />
+			     <result column="order_Id" property="orderId" jdbcType="INTEGER" />
+			     <result column="number" property="number" jdbcType="INTEGER" />
+			     <!-- 商品信息 -->
+			    <association property="items" javaType="com.os.domain.Items">
+			    	  <id column="items_Id" property="itemsId" jdbcType="INTEGER" />
+					  <result column="items_name" property="itemsName" jdbcType="VARCHAR" />
+					  <result column="items_imagesPic" property="itemsImagespic" jdbcType="VARCHAR" />
+					  <result column="items_price" property="itemsPrice" jdbcType="INTEGER" />
+					  <result column="items_content" property="itemsContent" jdbcType="VARCHAR" />
+					  <result column="shop_Id" property="shopId" jdbcType="INTEGER" />
+			    </association>
+		    </collection>
+	    </collection>
+  </resultMap>
+  
+  <!-- by:oy  -->
+   <!-- 查询用户的所有订单 -->
+  <select id="findUserAllOrder" resultMap="UserAndOrderRstMap" parameterType="int">
+	Select `user`.user_Id,user_name,
+					shop.shop_name,
+	  	 		`order`.order_Id,
+	  	 		`order`.address_Id,
+	  	 		order_totalPrice,
+	  	 		order_status,
+	  	 		order_createTime,
+	  	 		address_content,
+	  	 		items.items_Id,
+	  	 		number,
+	  	 		items_name,
+	  	 		items_price,
+	  	 		user_name,
+	  	 		user_phone
+	  	 		from `order`,`orderdetail`,items ,address,`user`,shop
+	  	 		where shop.shop_Id=`order`.shop_Id 
+	  	 		and `order`.order_Id=orderdetail.order_Id 
+	  	 		and `order`.address_Id=address.address_Id
+	  	 		and items.items_Id=orderdetail.items_Id  
+	  	 		and address.user_Id=user.user_Id
+	  	 		and user.user_Id=#{userId,jdbcType=INTEGER};
+ </select>
+</mapper>

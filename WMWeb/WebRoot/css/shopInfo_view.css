@@ -1,0 +1,36 @@
+@CHARSET "UTF-8";
+form{
+	width:980px;
+	font-size:20px;
+}
+
+
+
+input{
+	height:50px;
+	margin-top:10px;
+	font-size:20px;
+	
+}
+
+input[type="text"]{
+	width:600px;
+	border:1px solid blue;
+	border-radius:15px
+	
+}
+
+input[name="shop_beginCost"]{
+	width:80px;
+}
+
+input[name="shop_transferCost"]{
+	width:80px;
+	marign-bottom:20px;
+}
+
+#shop_description{
+	border:1px solid blue;
+	border-radius:15px;
+	font-size:20px;
+}

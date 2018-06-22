@@ -1,0 +1,12 @@
+package com.os.service;
+
+import com.os.domain.Address;
+import com.os.domain.User;
+
+public interface AddressService {
+
+	//ÃÌº”µÿ÷∑
+	void addAdress(Address ad);
+
+	
+}

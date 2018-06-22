@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.os.dao.ItemsMapper" >
+  <resultMap id="BaseResultMap" type="com.os.domain.Items" >
+    <id column="items_Id" property="itemsId" jdbcType="INTEGER" />
+    <result column="items_name" property="itemsName" jdbcType="VARCHAR" />
+    <result column="items_imagesPic" property="itemsImagespic" jdbcType="VARCHAR" />
+    <result column="items_price" property="itemsPrice" jdbcType="INTEGER" />
+     <result column="items_content" property="itemsContent" jdbcType="VARCHAR" />
+    <result column="shop_Id" property="shopId" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.os.domain.Items" extends="BaseResultMap" >
+    <result column="items_content" property="itemsContent" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    items_Id, items_name, items_imagesPic, items_price, shop_Id
+  </sql>
+  <sql id="Blob_Column_List" >
+    items_content
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.os.domain.ItemsExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from items
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.os.domain.ItemsExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from items
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from items
+    where items_Id = #{itemsId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from items
+    where items_Id = #{itemsId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.os.domain.ItemsExample" >
+    delete from items
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.os.domain.Items" >
+    insert into items (items_Id, items_name, items_imagesPic, 
+      items_price, shop_Id, items_content
+      )
+    values (#{itemsId,jdbcType=INTEGER}, #{itemsName,jdbcType=VARCHAR}, #{itemsImagespic,jdbcType=VARCHAR}, 
+      #{itemsPrice,jdbcType=INTEGER}, #{shopId,jdbcType=INTEGER}, #{itemsContent,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.os.domain.Items" >
+    insert into items
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="itemsId != null" >
+        items_Id,
+      </if>
+      <if test="itemsName != null" >
+        items_name,
+      </if>
+      <if test="itemsImagespic != null" >
+        items_imagesPic,
+      </if>
+      <if test="itemsPrice != null" >
+        items_price,
+      </if>
+      <if test="shopId != null" >
+        shop_Id,
+      </if>
+      <if test="itemsContent != null" >
+        items_content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="itemsId != null" >
+        #{itemsId,jdbcType=INTEGER},
+      </if>
+      <if test="itemsName != null" >
+        #{itemsName,jdbcType=VARCHAR},
+      </if>
+      <if test="itemsImagespic != null" >
+        #{itemsImagespic,jdbcType=VARCHAR},
+      </if>
+      <if test="itemsPrice != null" >
+        #{itemsPrice,jdbcType=INTEGER},
+      </if>
+      <if test="shopId != null" >
+        #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="itemsContent != null" >
+        #{itemsContent,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.os.domain.ItemsExample" resultType="java.lang.Integer" >
+    select count(*) from items
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update items
+    <set >
+      <if test="record.itemsId != null" >
+        items_Id = #{record.itemsId,jdbcType=INTEGER},
+      </if>
+      <if test="record.itemsName != null" >
+        items_name = #{record.itemsName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.itemsImagespic != null" >
+        items_imagesPic = #{record.itemsImagespic,jdbcType=VARCHAR},
+      </if>
+      <if test="record.itemsPrice != null" >
+        items_price = #{record.itemsPrice,jdbcType=INTEGER},
+      </if>
+      <if test="record.shopId != null" >
+        shop_Id = #{record.shopId,jdbcType=INTEGER},
+      </if>
+      <if test="record.itemsContent != null" >
+        items_content = #{record.itemsContent,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update items
+    set items_Id = #{record.itemsId,jdbcType=INTEGER},
+      items_name = #{record.itemsName,jdbcType=VARCHAR},
+      items_imagesPic = #{record.itemsImagespic,jdbcType=VARCHAR},
+      items_price = #{record.itemsPrice,jdbcType=INTEGER},
+      shop_Id = #{record.shopId,jdbcType=INTEGER},
+      items_content = #{record.itemsContent,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update items
+    set items_Id = #{record.itemsId,jdbcType=INTEGER},
+      items_name = #{record.itemsName,jdbcType=VARCHAR},
+      items_imagesPic = #{record.itemsImagespic,jdbcType=VARCHAR},
+      items_price = #{record.itemsPrice,jdbcType=INTEGER},
+      shop_Id = #{record.shopId,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.os.domain.Items" >
+    update items
+    <set >
+      <if test="itemsName != null" >
+        items_name = #{itemsName,jdbcType=VARCHAR},
+      </if>
+      <if test="itemsImagespic != null" >
+        items_imagesPic = #{itemsImagespic,jdbcType=VARCHAR},
+      </if>
+      <if test="itemsPrice != null" >
+        items_price = #{itemsPrice,jdbcType=INTEGER},
+      </if>
+      <if test="shopId != null" >
+        shop_Id = #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="itemsContent != null" >
+        items_content = #{itemsContent,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where items_Id = #{itemsId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.os.domain.Items" >
+    update items
+    set items_name = #{itemsName,jdbcType=VARCHAR},
+      items_imagesPic = #{itemsImagespic,jdbcType=VARCHAR},
+      items_price = #{itemsPrice,jdbcType=INTEGER},
+      shop_Id = #{shopId,jdbcType=INTEGER},
+      items_content = #{itemsContent,jdbcType=LONGVARCHAR}
+    where items_Id = #{itemsId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.os.domain.Items" >
+    update items
+    set items_name = #{itemsName,jdbcType=VARCHAR},
+      items_imagesPic = #{itemsImagespic,jdbcType=VARCHAR},
+      items_price = #{itemsPrice,jdbcType=INTEGER},
+      shop_Id = #{shopId,jdbcType=INTEGER}
+    where items_Id = #{itemsId,jdbcType=INTEGER}
+  </update>
+  
+  <select id="findAllByShopId" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+  	select * from Items where shop_Id=#{id,jdbcType=INTEGER} 
+  </select>
+  
+  
+  <!-- by：oy -->
+  <!-- <select id="findAllByShopId" parameterType="int" resultMap="BaseResultMap">
+  		SELECT * FROM items WHERE shop_Id=#{shopId,jdbcType=INTEGER}
+  </select> -->
+  
+</mapper>

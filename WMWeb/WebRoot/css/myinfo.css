@@ -1,0 +1,25 @@
+@charset "UTF-8";
+.content{
+	width: 980px;
+	margin: 0 auto;
+}
+div.two{
+	margin: 10px 0 0 0;
+}
+div.editinfo{
+	margin:10px 0 10px 20px;
+}
+div.madd{
+	margin:10px 0 10px 20px;
+}
+div.two input{
+	color: #fff;
+    background-color: #d23430;
+    border-color: #d23430;
+	width:180px;
+	cursor: pointer;
+}
+span.w{
+	font-size: 30px;
+	font-weight: 500;
+}
