@@ -52,5 +52,13 @@ public class OrderSerivceImpl implements IOrderService {
 	public void insertOrder(Order order) {
 		orderMaper.insertOrder(order);		
 	}
+	
+	/**
+	 * 根据订单id更新订单评价
+	 */
+	@Override
+	public void updateOrderAssessById(Order order) {
+		orderMaper.updateAssessById(order);
+	}
 
 }

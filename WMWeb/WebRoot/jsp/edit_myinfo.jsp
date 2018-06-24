@@ -7,7 +7,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="../css/edit_myinfo.css">
-<title>修改个人信息 | 美味速递</title>
+<title>修改个人信息 | 我的信息  | 美味速递</title>
 </head>
 <body>
 	<%@include file="header.jsp"%>

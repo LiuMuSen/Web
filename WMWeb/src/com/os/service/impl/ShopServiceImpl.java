@@ -55,7 +55,9 @@ public class ShopServiceImpl implements IShopInfoService {
 	public Shop findTodayOrder(Shop shop) {
 		return shopMapper.findTodayOrder(shop.getShopId());
 	}
-
+	/**
+	 * 商家显示已完成 用户显示已完成 + 评价
+	 */
 	@Override
 	public void dealOrder(Integer orderId) {
 		orderMapper.updateStatus(orderId);
@@ -92,6 +94,15 @@ public class ShopServiceImpl implements IShopInfoService {
 	@Override
 	public Shop findShopByShopId(Integer shopId) {
 		return shopMapper.selectByPrimaryKey(shopId);
+	}
+	
+	/**
+	 * 状态3表示商家显示送货中   用户显示确认送达
+	 * @author oy 
+	 */
+	@Override
+	public void dealOrderTo3(Integer orderId) {
+		orderMapper.updateStatusTo3(orderId);
 	}
 	
 	

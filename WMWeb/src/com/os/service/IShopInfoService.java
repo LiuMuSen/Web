@@ -81,5 +81,12 @@ public interface IShopInfoService {
 	 * @author oy
 	 */
 	Shop findShopByShopId(Integer shopId);
+	
+	/**
+	 * 状态3表示商家显示送货中   用户显示确认送达
+	 * @param attribute
+	 * @author oy
+	 */
+	void dealOrderTo3(Integer orderId);
 
 }

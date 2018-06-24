@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.os.dao.AddressMapper" >
+  <resultMap id="BaseResultMap" type="com.os.domain.Address" >
+    <id column="address_Id" property="addressId" jdbcType="INTEGER" />
+    <result column="address_content" property="addressContent" jdbcType="VARCHAR" />
+    <result column="user_Id" property="userId" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    address_Id, address_content, user_Id
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.os.domain.AddressExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from address
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from address
+    where address_Id = #{addressId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from address
+    where address_Id = #{addressId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.os.domain.AddressExample" >
+    delete from address
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.os.domain.Address" >
+    insert into address (address_Id, address_content, user_Id
+      )
+    values (#{addressId,jdbcType=INTEGER}, #{addressContent,jdbcType=VARCHAR}, #{userId,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.os.domain.Address" >
+    insert into address
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="addressId != null" >
+        address_Id,
+      </if>
+      <if test="addressContent != null" >
+        address_content,
+      </if>
+      <if test="userId != null" >
+        user_Id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="addressId != null" >
+        #{addressId,jdbcType=INTEGER},
+      </if>
+      <if test="addressContent != null" >
+        #{addressContent,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.os.domain.AddressExample" resultType="java.lang.Integer" >
+    select count(*) from address
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update address
+    <set >
+      <if test="record.addressId != null" >
+        address_Id = #{record.addressId,jdbcType=INTEGER},
+      </if>
+      <if test="record.addressContent != null" >
+        address_content = #{record.addressContent,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userId != null" >
+        user_Id = #{record.userId,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update address
+    set address_Id = #{record.addressId,jdbcType=INTEGER},
+      address_content = #{record.addressContent,jdbcType=VARCHAR},
+      user_Id = #{record.userId,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.os.domain.Address" >
+    update address
+    <set >
+      <if test="addressContent != null" >
+        address_content = #{addressContent,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        user_Id = #{userId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where address_Id = #{addressId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.os.domain.Address" >
+    update address
+    set address_content = #{addressContent,jdbcType=VARCHAR},
+      user_Id = #{userId,jdbcType=INTEGER}
+    where address_Id = #{addressId,jdbcType=INTEGER}
+  </update>
+  
+  <!-- 根据userId查找用户的地址 BY:oy -->
+  <select id="selectByUserId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  	select * from address where user_Id = #{id}
+  </select>
+  
+  
+</mapper>

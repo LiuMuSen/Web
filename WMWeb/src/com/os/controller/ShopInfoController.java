@@ -152,7 +152,8 @@ public class ShopInfoController {
 	//Ω” ‹∂©µ•
 	@RequestMapping("dealOrder")
 	public String dealOrder(HttpServletRequest request,Order order){
-		iShopInfoService.dealOrder(order.getOrderId());
+		/*iShopInfoService.dealOrder(order.getOrderId());*/
+		iShopInfoService.dealOrderTo3(order.getOrderId());
 		return "redirect:findTodayOrder.do";
 	}
 	

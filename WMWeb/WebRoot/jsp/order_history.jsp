@@ -41,6 +41,9 @@
 					<span>地址：${orders.address.addressContent}</span>
 				</th>
 			</tr>
+			<c:if test="${not empty orders.orderAssess }">
+					<tr><th colspan="4" align="left"><span style="color:red; font-size:20px;">顾客评价：${orders.orderAssess }</span></th></tr>
+			</c:if>
 			<tr class="four_tr">
 				<th width="50%">菜品</th>
 				<th width="25%">单价(元)</th>
@@ -65,14 +68,14 @@
 		</c:forEach>
 		
 		
-		<!-- 分页开始 -->
+		<!-- 分页开始 
 		<div class="pagination">
 			<ul>
 				<li class="disablepage"><a href="#">&lt;&lt;上一页</a></li>
 				<li>第1页/共1页</li>
 				<li class="nextPage"><a href="#">下一页&gt;&gt;</a></li>
 			</ul>
-		</div><!-- 分页结束 -->
+		</div><分页结束 -->
 		
 	</div>
 </body>

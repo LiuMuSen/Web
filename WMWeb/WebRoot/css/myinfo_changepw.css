@@ -3,11 +3,11 @@
 	width:980px;
 	margin: 0 auto;
 }
-div.edit div{
+div.change div{
 	margin: 10px 0 10px 0;
 }
 
-div.edit input{
+div.change input{
 	display: block;
 	width: 25%;
 	padding: .375rem .375rem;
@@ -21,11 +21,6 @@ div.edit input{
     margin: 12px 0;
 }
 
-div.sex input{
-	display: inline;
-	width: 3%;
-	margin-left: 20px;
-}
 #btn_submit{
 	color: #fff;
     background-color: #d23430;

@@ -1,0 +1,554 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.os.dao.ShopMapper" >
+  <resultMap id="BaseResultMap" type="com.os.domain.Shop" >
+    <id column="shop_Id" property="shopId" jdbcType="INTEGER" />
+    <result column="shop_name" property="shopName" jdbcType="VARCHAR" />
+    <result column="shop_address" property="shopAddress" jdbcType="VARCHAR" />
+    <result column="shop_activity" property="shopActivity" jdbcType="VARCHAR" />
+    <result column="shop_logon" property="shopLogon" jdbcType="VARCHAR" />
+    <result column="shop_description" property="shopDescription" jdbcType="VARCHAR" />
+    <result column="user_Id" property="userId" jdbcType="INTEGER" />
+    <result column="type_Id" property="typeId" jdbcType="INTEGER" />
+    <result column="shop_transferCost" property="shopTransfercost" jdbcType="DOUBLE" />
+    <result column="shop_beginCost" property="shopBegincost" jdbcType="DOUBLE" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.os.domain.Shop" extends="BaseResultMap" >
+    <result column="shop_description" property="shopDescription" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" > 
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    shop_Id, shop_name, shop_address, shop_activity, shop_logon, user_Id, type_Id, shop_transferCost, 
+    shop_beginCost
+  </sql>
+  <sql id="Blob_Column_List" >
+    shop_description
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.os.domain.ShopExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from shop
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.os.domain.ShopExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from shop
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from shop
+    where shop_Id = #{shopId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from shop
+    where shop_Id = #{shopId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.os.domain.ShopExample" >
+    delete from shop
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.os.domain.Shop" >
+    insert into shop (shop_Id, shop_name, shop_address, 
+      shop_activity, shop_logon, user_Id, 
+      type_Id, shop_transferCost, shop_beginCost, 
+      shop_description)
+    values (#{shopId,jdbcType=INTEGER}, #{shopName,jdbcType=VARCHAR}, #{shopAddress,jdbcType=VARCHAR}, 
+      #{shopActivity,jdbcType=VARCHAR}, #{shopLogon,jdbcType=VARCHAR}, #{userId,jdbcType=INTEGER}, 
+      #{typeId,jdbcType=INTEGER}, #{shopTransfercost,jdbcType=DOUBLE}, #{shopBegincost,jdbcType=DOUBLE}, 
+      #{shopDescription,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.os.domain.Shop" >
+    insert into shop
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="shopId != null" >
+        shop_Id,
+      </if>
+      <if test="shopName != null" >
+        shop_name,
+      </if>
+      <if test="shopAddress != null" >
+        shop_address,
+      </if>
+      <if test="shopActivity != null" >
+        shop_activity,
+      </if>
+      <if test="shopLogon != null" >
+        shop_logon,
+      </if>
+      <if test="userId != null" >
+        user_Id,
+      </if>
+      <if test="typeId != null" >
+        type_Id,
+      </if>
+      <if test="shopTransfercost != null" >
+        shop_transferCost,
+      </if>
+      <if test="shopBegincost != null" >
+        shop_beginCost,
+      </if>
+      <if test="shopDescription != null" >
+        shop_description,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="shopId != null" >
+        #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="shopName != null" >
+        #{shopName,jdbcType=VARCHAR},
+      </if>
+      <if test="shopAddress != null" >
+        #{shopAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="shopActivity != null" >
+        #{shopActivity,jdbcType=VARCHAR},
+      </if>
+      <if test="shopLogon != null" >
+        #{shopLogon,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="typeId != null" >
+        #{typeId,jdbcType=INTEGER},
+      </if>
+      <if test="shopTransfercost != null" >
+        #{shopTransfercost,jdbcType=DOUBLE},
+      </if>
+      <if test="shopBegincost != null" >
+        #{shopBegincost,jdbcType=DOUBLE},
+      </if>
+      <if test="shopDescription != null" >
+        #{shopDescription,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.os.domain.ShopExample" resultType="java.lang.Integer" >
+    select count(*) from shop
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update shop
+    <set >
+      <if test="record.shopId != null" >
+        shop_Id = #{record.shopId,jdbcType=INTEGER},
+      </if>
+      <if test="record.shopName != null" >
+        shop_name = #{record.shopName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shopAddress != null" >
+        shop_address = #{record.shopAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shopActivity != null" >
+        shop_activity = #{record.shopActivity,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shopLogon != null" >
+        shop_logon = #{record.shopLogon,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userId != null" >
+        user_Id = #{record.userId,jdbcType=INTEGER},
+      </if>
+      <if test="record.typeId != null" >
+        type_Id = #{record.typeId,jdbcType=INTEGER},
+      </if>
+      <if test="record.shopTransfercost != null" >
+        shop_transferCost = #{record.shopTransfercost,jdbcType=DOUBLE},
+      </if>
+      <if test="record.shopBegincost != null" >
+        shop_beginCost = #{record.shopBegincost,jdbcType=DOUBLE},
+      </if>
+      <if test="record.shopDescription != null" >
+        shop_description = #{record.shopDescription,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update shop
+    set shop_Id = #{record.shopId,jdbcType=INTEGER},
+      shop_name = #{record.shopName,jdbcType=VARCHAR},
+      shop_address = #{record.shopAddress,jdbcType=VARCHAR},
+      shop_activity = #{record.shopActivity,jdbcType=VARCHAR},
+      shop_logon = #{record.shopLogon,jdbcType=VARCHAR},
+      user_Id = #{record.userId,jdbcType=INTEGER},
+      type_Id = #{record.typeId,jdbcType=INTEGER},
+      shop_transferCost = #{record.shopTransfercost,jdbcType=DOUBLE},
+      shop_beginCost = #{record.shopBegincost,jdbcType=DOUBLE},
+      shop_description = #{record.shopDescription,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update shop
+    set shop_Id = #{record.shopId,jdbcType=INTEGER},
+      shop_name = #{record.shopName,jdbcType=VARCHAR},
+      shop_address = #{record.shopAddress,jdbcType=VARCHAR},
+      shop_activity = #{record.shopActivity,jdbcType=VARCHAR},
+      shop_logon = #{record.shopLogon,jdbcType=VARCHAR},
+      user_Id = #{record.userId,jdbcType=INTEGER},
+      type_Id = #{record.typeId,jdbcType=INTEGER},
+      shop_transferCost = #{record.shopTransfercost,jdbcType=DOUBLE},
+      shop_beginCost = #{record.shopBegincost,jdbcType=DOUBLE}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.os.domain.Shop" >
+    update shop
+    <set >
+      <if test="shopName != null" >
+        shop_name = #{shopName,jdbcType=VARCHAR},
+      </if>
+      <if test="shopAddress != null" >
+        shop_address = #{shopAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="shopActivity != null" >
+        shop_activity = #{shopActivity,jdbcType=VARCHAR},
+      </if>
+      <if test="shopLogon != null" >
+        shop_logon = #{shopLogon,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        user_Id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="typeId != null" >
+        type_Id = #{typeId,jdbcType=INTEGER},
+      </if>
+      <if test="shopTransfercost != null" >
+        shop_transferCost = #{shopTransfercost,jdbcType=DOUBLE},
+      </if>
+      <if test="shopBegincost != null" >
+        shop_beginCost = #{shopBegincost,jdbcType=DOUBLE},
+      </if>
+      <if test="shopDescription != null" >
+        shop_description = #{shopDescription,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where shop_Id = #{shopId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.os.domain.Shop" >
+    update shop
+    set shop_name = #{shopName,jdbcType=VARCHAR},
+      shop_address = #{shopAddress,jdbcType=VARCHAR},
+      shop_activity = #{shopActivity,jdbcType=VARCHAR},
+      shop_logon = #{shopLogon,jdbcType=VARCHAR},
+      user_Id = #{userId,jdbcType=INTEGER},
+      type_Id = #{typeId,jdbcType=INTEGER},
+      shop_transferCost = #{shopTransfercost,jdbcType=DOUBLE},
+      shop_beginCost = #{shopBegincost,jdbcType=DOUBLE},
+      shop_description = #{shopDescription,jdbcType=LONGVARCHAR}
+    where shop_Id = #{shopId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.os.domain.Shop" >
+    update shop
+    set shop_name = #{shopName,jdbcType=VARCHAR},
+      shop_address = #{shopAddress,jdbcType=VARCHAR},
+      shop_activity = #{shopActivity,jdbcType=VARCHAR},
+      shop_logon = #{shopLogon,jdbcType=VARCHAR},
+      user_Id = #{userId,jdbcType=INTEGER},
+      type_Id = #{typeId,jdbcType=INTEGER},
+      shop_transferCost = #{shopTransfercost,jdbcType=DOUBLE},
+      shop_beginCost = #{shopBegincost,jdbcType=DOUBLE}
+    where shop_Id = #{shopId,jdbcType=INTEGER}
+  </update>
+  
+  <select id="findShopIdByUseId" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+  	select shop_Id from shop where user_Id=#{userId}
+  </select> 
+  
+  <select id="saveOrUpdate"  parameterType="com.os.domain.Shop">
+  		update shop
+	    	set shop_address = #{shopAddress,jdbcType=VARCHAR},
+	        shop_description = #{shopDescription,jdbcType=VARCHAR},
+		    shop_transferCost = #{shopTransfercost,jdbcType=DOUBLE},
+		    shop_beginCost = #{shopBegincost,jdbcType=DOUBLE}
+	    	where shop_Id = #{shopId,jdbcType=INTEGER}
+  </select>
+  
+  
+  <resultMap id="ShopAndOrderRstMap" type="com.os.domain.Shop" >
+  		<!--商家信息  -->
+	    <id column="shop_Id" property="shopId" jdbcType="INTEGER" />
+	    <result column="shop_name" property="shopName" jdbcType="VARCHAR" />
+	    <result column="shop_address" property="shopAddress" jdbcType="VARCHAR" />
+	    <result column="shop_activity" property="shopActivity" jdbcType="VARCHAR" />
+	    <result column="shop_logon" property="shopLogon" jdbcType="VARCHAR" />
+	    <result column="shop_description" property="shopDescription" jdbcType="VARCHAR" />
+	    <result column="user_Id" property="userId" jdbcType="INTEGER" />
+	    <result column="type_Id" property="typeId" jdbcType="INTEGER" />
+	    <result column="shop_transferCost" property="shopTransfercost" jdbcType="DOUBLE" />
+	    <result column="shop_beginCost" property="shopBegincost" jdbcType="DOUBLE" />
+	    <!-- 订单信息 -->
+	    <collection property="order" ofType="com.os.domain.Order">
+	    	<id column="order_Id" property="orderId" jdbcType="INTEGER" />
+		    <result column="user_Id" property="userId" jdbcType="INTEGER" />
+		    <result column="shop_Id" property="shopId" jdbcType="INTEGER" />
+		    <result column="address_Id" property="addressId" jdbcType="INTEGER" />
+		    <result column="order_totalPrice" property="orderTotalprice" jdbcType="DOUBLE" />
+		    <result column="order_assess" property="orderAssess" jdbcType="VARCHAR" />
+		    <result column="order_status" property="orderStatus" jdbcType="INTEGER" />
+		    <result column="order_createTime" property="orderCreatetime" jdbcType="TIMESTAMP" />
+		    <association property="address"  javaType="com.os.domain.Address">
+			    <id column="address_Id" property="addressId" jdbcType="INTEGER" />
+				<result column="address_content" property="addressContent" jdbcType="VARCHAR" />
+				<result column="user_Id" property="userId" jdbcType="INTEGER" />
+				<association property="user" javaType="com.os.domain.User">
+					   <result column="user_name" property="userName" jdbcType="VARCHAR" />
+					   <result column="password" property="password" jdbcType="VARCHAR" />
+					   <result column="user_sex" property="userSex" jdbcType="VARCHAR" />
+					   <result column="power_Id" property="powerId" jdbcType="INTEGER" />
+					   <result column="user_phone" property="userPhone" jdbcType="VARCHAR" />
+				</association>
+			</association>
+		    <!-- 订单详情 -->
+		    <collection property="detailList" ofType="com.os.domain.Orderdetail">
+		    	 <id column="orderdetail_Id" property="orderdetailId" jdbcType="INTEGER" />
+			     <result column="items_Id" property="itemsId" jdbcType="INTEGER" />
+			     <result column="order_Id" property="orderId" jdbcType="INTEGER" />
+			     <result column="number" property="number" jdbcType="INTEGER" />
+			     <!-- 商品信息 -->
+			    <association property="items" javaType="com.os.domain.Items">
+			    	  <id column="items_Id" property="itemsId" jdbcType="INTEGER" />
+					  <result column="items_name" property="itemsName" jdbcType="VARCHAR" />
+					  <result column="items_imagesPic" property="itemsImagespic" jdbcType="VARCHAR" />
+					  <result column="items_price" property="itemsPrice" jdbcType="INTEGER" />
+					  <result column="items_content" property="itemsContent" jdbcType="VARCHAR" />
+					  <result column="shop_Id" property="shopId" jdbcType="INTEGER" />
+			    </association>
+		    </collection>
+	    </collection>
+  </resultMap>
+  
+  <!-- 
+  		查询商家的历史订单
+  		order_status=2代表该订单处理完成
+   -->
+  <select id="findAllShopAndOrder" resultMap="ShopAndOrderRstMap">
+	Select shop.shop_Id,shop_name,
+	  	 		shop_address,
+	  	 		shop_activity,
+	  	 		shop_logon,
+	  	 		shop_description,
+	  	 		shop.user_Id,
+	  	 		shop.type_Id,
+	  	 		shop_transferCost,
+	  	 		shop_beginCost,
+	  	 		`order`.order_Id,
+	  	 		`order`.user_Id,
+	  	 		`order`.address_Id,
+	  	 		order_totalPrice,
+	  	 		order_assess,
+	  	 		order_status,
+	  	 		order_createTime,
+	  	 		address_content,
+	  	 		items.items_Id,
+	  	 		number,
+	  	 		items_name,
+	  	 		items_imagesPic,
+	  	 		items_price,
+	  	 		items_content,
+	  	 		user_name,
+	  	 		`password`,
+	  	 		user_sex,
+	  	 		user_phone
+	  	 		from shop,`order`,`orderdetail`,items ,address,`user`
+	  	 		where shop.shop_Id=`order`.shop_Id 
+	  	 		and `order`.order_Id=orderdetail.order_Id 
+	  	 		and `order`.address_Id=address.address_Id
+	  	 		and items.items_Id=orderdetail.items_Id  
+	  	 		and address.user_Id=user.user_Id
+	  	 		and order_status=2
+	  	 		and order_createTime &lt; DATE_FORMAT(CURDATE(), 'MM-dd-yyyy')
+	  	 		and shop.shop_Id=#{shopId}
+ 	</select>
+	  
+	<!-- 
+  		查询商家的退单处理
+  		order_status=1代表该已经顾客退单
+   -->
+  <select id="findOutShopAndOrder" resultMap="ShopAndOrderRstMap">
+	Select shop.shop_Id,shop_name,
+	  	 		shop_address,
+	  	 		shop_activity,
+	  	 		shop_logon,
+	  	 		shop_description,
+	  	 		shop.user_Id,
+	  	 		shop.type_Id,
+	  	 		shop_transferCost,
+	  	 		shop_beginCost,
+	  	 		`order`.order_Id,
+	  	 		`order`.user_Id,
+	  	 		`order`.address_Id,
+	  	 		order_totalPrice,
+	  	 		order_assess,
+	  	 		order_status,
+	  	 		order_createTime,
+	  	 		address_content,
+	  	 		items.items_Id,
+	  	 		number,
+	  	 		items_name,
+	  	 		items_imagesPic,
+	  	 		items_price,
+	  	 		items_content,
+	  	 		user_name,
+	  	 		`password`,
+	  	 		user_sex,
+	  	 		user_phone
+	  	 		from shop,`order`,`orderdetail`,items ,address,`user`
+	  	 		where shop.shop_Id=`order`.shop_Id 
+	  	 		and `order`.order_Id=orderdetail.order_Id 
+	  	 		and `order`.address_Id=address.address_Id
+	  	 		and items.items_Id=orderdetail.items_Id  
+	  	 		and address.user_Id=user.user_Id
+	  	 		and `order`.order_status='1'
+	  	 		and shop.shop_Id=#{shopId}
+ 	</select> 
+	  
+	<select id="findTodayOrder" resultMap="ShopAndOrderRstMap">
+			Select shop.shop_Id,shop_name,
+		  	 		shop_address,
+		  	 		shop_activity,
+		  	 		shop_logon,
+		  	 		shop_description,
+		  	 		shop.user_Id,
+		  	 		shop.type_Id,
+		  	 		shop_transferCost,
+		  	 		shop_beginCost,
+		  	 		`order`.order_Id,
+		  	 		`order`.user_Id,
+		  	 		`order`.address_Id,
+		  	 		order_totalPrice,
+		  	 		order_assess,
+		  	 		order_status,
+		  	 		order_createTime,
+		  	 		address_content,
+		  	 		items.items_Id,
+		  	 		number,
+		  	 		items_name,
+		  	 		items_imagesPic,
+		  	 		items_price,
+		  	 		items_content,
+		  	 		user_name,
+		  	 		`password`,
+		  	 		user_sex,
+		  	 		user_phone
+		  	 		from shop,`order`,`orderdetail`,items ,address,`user`
+		  	 		where shop.shop_Id=`order`.shop_Id 
+		  	 		and `order`.order_Id=orderdetail.order_Id 
+		  	 		and `order`.address_Id=address.address_Id
+		  	 		and items.items_Id=orderdetail.items_Id  
+		  	 		and address.user_Id=user.user_Id
+		  	 		and to_days(`order_createTime`) = to_days(now())
+		  	 		and shop.shop_Id=#{shop_Id} order by `order`.order_Id DESC
+ 	</select>
+ 	
+ 	<insert id="insertNewShop" parameterType="com.os.domain.Apply">
+ 		    insert into shop (shop_name, shop_address, 
+     			 shop_logon, user_Id, type_Id, shop_description)
+    		values ( #{applyShopname,jdbcType=VARCHAR}, #{applyShopaddress,jdbcType=VARCHAR}, 
+    		  #{applyShoplogon,jdbcType=VARCHAR}, #{userId,jdbcType=INTEGER}, 
+     		  #{typeId,jdbcType=INTEGER},  #{applyShopdescription,jdbcType=LONGVARCHAR})
+ 	</insert>
+ 	
+ 	<select id="findMaxId" resultType="int">
+ 		select Max(shop_Id) from shop
+ 	</select>
+ 	
+ 	<select id="count" resultType="int">
+ 		select count(*) from shop
+ 	</select>
+ 	
+ 	<!-- 找到所有商店 by：oy -->
+	  <select id="findAllShop" resultMap="BaseResultMap">
+	  	select * from shop
+	  </select>
+	
+</mapper>

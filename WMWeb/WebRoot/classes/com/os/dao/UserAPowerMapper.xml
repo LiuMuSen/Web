@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper    
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"    
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.os.dao.UserAPowerMapper">
+
+  <resultMap id="BaseResultMap1" type="com.os.domain.UserAPower" >
+    <id column="user_Id" property="userId" jdbcType="INTEGER" />
+    <result column="user_name" property="userName" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="user_sex" property="userSex" jdbcType="VARCHAR" />
+    <result column="power_Id" property="powerId" jdbcType="INTEGER" />
+    <result column="user_phone" property="userPhone" jdbcType="VARCHAR" />
+    <result column="power_name" property="powerName" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  
+   <resultMap id="UserAAddressMap" type="com.os.domain.UserAPower" >
+	    <id column="user_Id" property="userId" jdbcType="INTEGER" />
+	    <result column="user_name" property="userName" jdbcType="VARCHAR" />
+	    <result column="password" property="password" jdbcType="VARCHAR" />
+	    <result column="user_sex" property="userSex" jdbcType="VARCHAR" />
+	    <result column="power_Id" property="powerId" jdbcType="INTEGER" />
+	    <result column="user_phone" property="userPhone" jdbcType="VARCHAR" />
+	    <result column="power_name" property="powerName" jdbcType="VARCHAR" />
+	   	<collection property="addressList" ofType="com.os.domain.Address">
+	   		   <id column="address_Id" property="addressId" jdbcType="INTEGER" />
+			   <result column="address_content" property="addressContent" jdbcType="VARCHAR" />
+			   <result column="user_Id" property="userId" jdbcType="INTEGER" />
+	   	</collection>
+  </resultMap>
+  
+  
+  <select id="selectAllUser" resultMap="BaseResultMap1">
+  	select user_Id,user_name,password,user_sex,`user`.power_Id,user_phone,power_name from `user`,power where `user`.power_Id=power.power_Id;
+  </select>
+  
+   <select id="pageOfUser" resultMap="BaseResultMap1" parameterType="com.os.domain.PageBean">
+	   select user_Id,user_name,password,user_sex,`user`.power_Id,user_phone,power_name from `user`,power where `user`.power_Id=power.power_Id  limit #{beginPage},#{pageSize}
+  </select>
+  
+  
+   <select id="findUserAAddress" resultMap="UserAAddressMap"  parameterType="com.os.domain.User">
+	   select * from `user`,power,address where `user`.user_Id=address.user_Id and power.power_Id=`user`.power_Id and `user`.user_Id =#{userId}
+  </select>
+  
+   <insert id="insert" parameterType="com.os.domain.UserAPower">
+	   	 insert into user ( user_name, password, 
+	      user_sex, power_Id, user_phone
+	     	 )
+	   	 values ( #{userName,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+	      	#{userSex,jdbcType=VARCHAR}, #{powerId,jdbcType=INTEGER}, #{userPhone,jdbcType=VARCHAR}
+	     )
+  </insert>
+ 
+  
+</mapper>
