@@ -8,6 +8,28 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="../css/myorder.css">
+<script src="../js/jquery-3.3.1.min.js"></script>
+<script >
+	$(document).ready(function(){
+		
+		$(".pingjiaSubmit").click(function(){
+			var id = $("input[name='pingjia_orderId']").val();
+			var content = $("input[name='pingjiaContent']").val();
+			$.ajax({
+				url:"http://127.0.0.1:8080/WMWeb/user/pingjia.do",
+				type:"post",
+				data:"orderId=" + id + "&content=" + content , 
+				success:function(){
+					
+				},
+				error:function(){
+					alert("评价提交成功，再次点击我的订单可以查看!");
+					$(".pingjiabox").hide();
+				}
+			});  
+		})
+	});
+</script>
 <title>我的订单</title>
 </head>
 <body>
@@ -21,19 +43,39 @@
 		<table class="order" cellSpacing="1" cellPadding="5" width="100%" border="0">
 			<tr class="first_tr" align="left">
 				<th colspan="2" width="60%">
-					<span style="font-size:30px; font-style: italic;">订单号：${o.orderId }</span>
+					<span style="font-size:30px; font-style: italic;">订单号：<span class="orderId">${o.orderId }</span></span>
 					<span style="color:red"></span>
 				</th>
 				<th colspan="2" width="40%">
-					<%-- <fmt:parseDate value="${o.orderCreatetime}" pattern="yyyy-MM-dd HH:mm" var="test"/> 
-					<fmt:formatDate value="${test}" pattern="yyyy-MM-dd　HH：mm"/>   --%>
-					时间：${o.orderCreatetime }
+					下单时间：<fmt:formatDate value="${o.orderCreatetime }" type="both" />
 				</th>
 			</tr>
 			<tr class="second_tr" align="left">
 				
-					<th colspan="4"><img src="../images/GK.png" width="40" heigth="40">订单状态：<c:if test="${o.orderStatus == 0}"><span>已下单</span></c:if>
-						<c:if test="${o.orderStatus == 2}"><span>已完成</span></c:if>
+					<th colspan="4"><img src="../images/GK.png" width="40" height="40">订单状态：
+						<c:choose>
+							<c:when test="${o.orderStatus == 0}">
+								<span>已下单</span>
+							</c:when>
+							<c:when test="${o.orderStatus == 2}">
+								<span>已完成  | 
+									<c:if test="${empty o.orderAssess }">
+										<span class="pingjiabox">
+											评价：
+											<input type="hidden" name="pingjia_orderId" value="${o.orderId }">
+											<input type="text" name="pingjiaContent" class="pingjiaContent" value="${o.orderAssess }" size="35">
+											<input type="button" class="pingjiaSubmit" value="提交">
+										</span>
+									</c:if> 
+									<c:if test="${not empty o.orderAssess }">
+										评价：${o.orderAssess }
+									</c:if>
+								</span>
+							</c:when>
+							<c:when test="${o.orderStatus == 3}">
+								<span><a class="confirm" href="${pageContext.request.contextPath }/user/confirm.do?orderId=${o.orderId }">确认送达</a></span>
+							</c:when>
+						</c:choose>
 					</th>
 				
 			</tr>
@@ -52,8 +94,8 @@
 			 <c:forEach items="${o.detailList }" var="i"> 
 				<tr>
 						<th>${i.items.itemsName}</th>
-						<th>12</th>
-						<th>1</th>
+						<th>${i.items.itemsPrice }</th>
+						<th>${i.number }</th>
 				</tr>
 			</c:forEach> 
 				

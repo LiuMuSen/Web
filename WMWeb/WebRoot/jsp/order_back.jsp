@@ -71,14 +71,14 @@
 		</c:forEach>
 		</c:forEach>
 		
-		<!-- 分页开始 -->
+		<!-- 分页开始 
 		<div class="pagination">
 			<ul>
 				<li class="disablepage"><a href="#">&lt;&lt;上一页</a></li>
 				<li>第1页/共1页</li>
 				<li class="nextPage"><a href="#">下一页&gt;&gt;</a></li>
 			</ul>
-		</div><!-- 分页结束 -->
+		</div> 分页结束 -->
 		
 	</div>
 </body>

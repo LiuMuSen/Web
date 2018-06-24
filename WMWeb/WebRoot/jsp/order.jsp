@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
+<c:set var="picPath" value="http://127.0.1:8006/WebImages"></c:set>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -45,7 +46,7 @@
 				<c:forEach items="${cartList }" var="c">
 					<ul class="order_lists">
 						<li class="list_con">
-							<div class="list_img"><a href="javascript:;"><img alt="物品图片" src="${c.itemsImagespic }" title="${c.itemsContent }"></a></div>
+							<div class="list_img"><a href="javascript:;"><img alt="物品图片" src="${picPath }${c.itemsImagespic }" title="${c.itemsContent }"></a></div>
 							<div class="list_text"><a href="javascript:;">${c.itemsName }</a></div>
 						</li>
 						<li class="list_price">

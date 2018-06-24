@@ -4,13 +4,17 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="../css/paysucc.css">
 <title>支付成功 | 美味速递</title>
 </head>
 <body>
 	<%@include file="header.jsp" %>
-	<h1>下单成功</h1>
+	<div class = "content">
+		<h1>支付成功</h1>
+	</div>
 	<%
-		response.setHeader("Refresh","3;url=/WMWeb/");
+		request.getSession().removeAttribute("cart");
+		response.setHeader("Refresh","5;url=/WMWeb/user/findAllOrderByUserId.do"); 
 	%>
 	
 	<%@include file="foot.jsp" %>

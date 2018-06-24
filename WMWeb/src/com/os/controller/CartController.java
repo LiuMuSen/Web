@@ -166,7 +166,8 @@ public class CartController {
 		}
 		System.out.println("======pay end=====");
 		
-		return "forward:/user/findAllOrderByUserId.do";
+		//return "forward:/user/findAllOrderByUserId.do";
+		return "paysucc";
 		
 	}
 	

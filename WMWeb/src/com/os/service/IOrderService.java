@@ -28,4 +28,12 @@ public interface IOrderService {
 	 * @author oy
 	 */
 	void insertOrderDetail(Orderdetail od);
+	
+	/**
+	 * 根据订单id更新评价
+	 * @param orderId 订单id
+	 * @param assess 评价内容
+	 * @author oy
+	 */
+	void updateOrderAssessById(Order order);
 }

@@ -1,6 +1,7 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt"  prefix="fmt"%>
+<c:set var="picPath" value="http://127.0.1:8006/WebImages"></c:set>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -25,8 +26,9 @@
 					</div>
 					<div style="clear:both;"></div>
 					<c:forEach items="${orders.detailList }" var="detail" >
+						<div style="clear:both;"></div>
 						<div class="foodInfo">
-							<div class="foodImage"><img src="../images/food1.jpg" width="30px" height="30px;"></div>
+							<div class="foodImage"><img src="${picPath }${detail.items.itemsImagespic }" width="30px" height="30px;"></div>
 							<div class="foodName">${detail.items.itemsName }</div>
 							<div class="foodNumber">数量:${detail.number}</div>
 							<div class="foodPrice">单价:${detail.items.itemsPrice}</div>
@@ -41,23 +43,13 @@
 					</div>
 					<div class="btn">
 							<c:if test="${orders.orderStatus == 0}"><a href="#"><span>未接单</span></a><input  type="submit" style="float:right; margin-right:3px; height:25px; cursor: pointer;" value="接单处理"/></c:if>
-							<c:if test="${orders.orderStatus == 2}"><a href="#"><span>已接单</span></a></c:if>
+							<c:if test="${orders.orderStatus == 2}"><a href="#"><span>已完成</span></a></c:if>
+							<c:if test="${orders.orderStatus == 3}"><a href="#"><span>送货中</span></a></c:if>
 					</div>
 				</div>
 			</form>
 		<!-- 一张订单的结束 -->	
 		</c:forEach>
-		
-		<div style="clear:both;"></div>
-		<!-- 分页开始 -->
-		<div class="pagination">
-			<ul>
-				<li class="disablepage"><a href="#">&lt;&lt;上一页</a></li>
-				<li>第1页/共1页</li>
-				<li class="nextPage"><a href="#">下一页&gt;&gt;</a></li>
-			</ul>
-		</div><!-- 分页结束 -->
-		
 		
 	</div>
 </div>

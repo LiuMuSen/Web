@@ -1,9 +1,11 @@
 package com.os.dao;
 
+import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
+
 import com.os.domain.Order;
 import com.os.domain.OrderExample;
-import java.util.List;
-import org.apache.ibatis.annotations.Param;
 
 public interface OrderMapper {
     int countByExample(OrderExample example);
@@ -47,4 +49,17 @@ public interface OrderMapper {
 	 * @author oy
 	 */
 	void insertOrder(Order order);
+	
+	/**
+	 * 用户确认收货的订单状态
+	 * @param orderId
+	 * @author oy
+	 */
+	void updateStatusTo3(Integer orderId);
+	
+	/**
+	 * 根据订单id 插入 
+	 * @author oy
+	 */
+	void updateAssessById(Order order);
 }
